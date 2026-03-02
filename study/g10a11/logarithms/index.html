@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алгебра: Логарифмы</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-10-11">10-11 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Алгебра: Логарифмы</h1>
+        <p>Алгебра</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+
+            <p>Логарифм — это операция, обратная возведению в степень. Логарифмы были введены для упрощения сложных вычислений (например, умножения и деления многозначных чисел) и сегодня являются фундаментальным понятием в математике.</p>
+
+            <h2>Определение логарифма</h2>
+            <p><b>Логарифмом</b> положительного числа $b$ по основанию $a$ (где $a > 0$ и $a \neq 1$) называется такое число $c$, что $a$ в степени $c$ равно $b$.</p>
+            
+            <p>Это записывается так:</p>
+            <div class="formula">
+                $$ \log_a(b) = c \quad \Leftrightarrow \quad a^c = b $$
+            </div>
+
+            <p><b>Примеры:</b></p>
+            <ul>
+                <li>$ \log_2(8) = 3 $, потому что $ 2^3 = 8 $</li>
+                <li>$ \log_{10}(100) = 2 $, потому что $ 10^2 = 100 $</li>
+                <li>$ \log_5(1) = 0 $, потому что $ 5^0 = 1 $</li>
+                <li>$ \log_3(\frac{1}{9}) = -2 $, потому что $ 3^{-2} = \frac{1}{3^2} = \frac{1}{9} $</li>
+            </ul>
+
+            <div class="note">
+                <b>Важные ограничения (ОДЗ):</b><br>
+                В выражении $ \log_a(b) $ всегда должны выполняться условия:
+                <ol>
+                    <li>Основание $a > 0$ (больше нуля)</li>
+                    <li>Основание $a \neq 1$ (не равно единице)</li>
+                    <li>Аргумент $b > 0$ (больше нуля)</li>
+                </ol>
+            </div>
+
+            <h3>Особые виды логарифмов</h3>
+            <ul>
+                <li><b>Десятичный логарифм:</b> Логарифм по основанию 10. Обозначается как $ \lg(b) $. ( $ \lg(b) = \log_{10}(b) $ )</li>
+                <li><b>Натуральный логарифм:</b> Логарифм по основанию $e$ (число Эйлера, $e \approx 2.718...$). Обозначается как $ \ln(b) $. ( $ \ln(b) = \log_e(b) $ )</li>
+            </ul>
+
+            <h2>Свойства логарифмов</h2>
+            <p>Эти свойства являются ключом к упрощению выражений и решению уравнений.</p>
+            <ul>
+                <li><b>Логарифм произведения:</b> $ \log_a(x \cdot y) = \log_a(x) + \log_a(y) $</li>
+                <li><b>Логарифм частного:</b> $ \log_a(\frac{x}{y}) = \log_a(x) - \log_a(y) $</li>
+                <li><b>Логарифм степени:</b> $ \log_a(x^p) = p \cdot \log_a(x) $</li>
+                <li><b>Логарифм от основания:</b> $ \log_a(a) = 1 $</li>
+                <li><b>Логарифм единицы:</b> $ \log_a(1) = 0 $</li>
+                <li><b>Формула перехода к новому основанию:</b> $ \log_a(b) = \frac{\log_c(b)}{\log_c(a)} $</li>
+                <li><b>Частный случай перехода:</b> $ \log_a(b) = \frac{1}{\log_b(a)} $</li>
+            </ul>
+            <p>Из этих свойств также следует <b>основное логарифмическое тождество</b>:</p>
+            <div class="formula">
+                $$ a^{\log_a(b)} = b $$
+            </div>
+
+
+            <h2>Решение логарифмических уравнений</h2>
+            <p><b>Логарифмическое уравнение</b> — это уравнение, в котором неизвестная (переменная) находится под знаком логарифма или в его основании.</p>
+            <p>Главный метод решения — <b>потенцирование</b>, то есть переход от равенства логарифмов к равенству их аргументов.</p>
+            <p>Если $ \log_a(f(x)) = \log_a(g(x)) $, то $ f(x) = g(x) $.</p>
+
+            <p><b>Важно:</b> При решении логарифмических уравнений всегда необходимо проверять <b>ОДЗ</b> (Область Допустимых Значений) или делать проверку найденных корней.</p>
+
+            <h3>Пример 1:</h3>
+            <p>Решить уравнение $ \log_3(x + 2) = \log_3(4x - 7) $</p>
+            <p>1. Приравниваем аргументы: $ x + 2 = 4x - 7 $</p>
+            <p>2. Решаем линейное уравнение: $ 2 + 7 = 4x - x \Rightarrow 9 = 3x \Rightarrow x = 3 $</p>
+            <p>3. Проверяем ОДЗ. Оба аргумента должны быть больше нуля:
+            <ul>
+                <li>$ x + 2 \Rightarrow 3 + 2 = 5 > 0 $ (Верно)</li>
+                <li>$ 4x - 7 \Rightarrow 4(3) - 7 = 12 - 7 = 5 > 0 $ (Верно)</li>
+            </ul>
+            <b>Ответ:</b> $ x = 3 $.</p>
+
+            <h3>Пример 2:</h3>
+            <p>Решить уравнение $ \log_2(x - 1) + \log_2(x - 2) = 1 $</p>
+            <p>1. Используем свойство логарифма произведения: $ \log_2((x - 1)(x - 2)) = 1 $</p>
+            <p>2. Представляем $1$ как логарифм по основанию 2: $ 1 = \log_2(2) $</p>
+            <p>3. Получаем: $ \log_2((x - 1)(x - 2)) = \log_2(2) $</p>
+            <p>4. Приравниваем аргументы: $ (x - 1)(x - 2) = 2 $</p>
+            <p>5. Раскрываем скобки и решаем квадратное уравнение: $ x^2 - 2x - x + 2 = 2 \Rightarrow x^2 - 3x = 0 \Rightarrow x(x - 3) = 0 $</p>
+            <p>6. Получаем два корня: $ x_1 = 0 $ и $ x_2 = 3 $.</p>
+            <p>7. Проверяем ОДЗ (оба исходных аргумента $x-1$ и $x-2$ должны быть $> 0$):
+            <ul>
+                <li>Проверяем $ x_1 = 0 $: $ (0 - 1) = -1 $. Это $ < 0 $. Корень не подходит.</li>
+                <li>Проверяем $ x_2 = 3 $: $ (3 - 1) = 2 > 0 $ и $ (3 - 2) = 1 > 0 $. Корень подходит.</li>
+            </ul>
+            <b>Ответ:</b> $ x = 3 $.</p>
+
+        </div>
+    </div>
+</div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

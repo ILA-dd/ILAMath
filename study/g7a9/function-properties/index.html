@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алгебра: 12 свойств функции</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-7-9">7-9 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="article-hero">
+        <h1>Алгебра: 12 свойств функции</h1>
+        <p>Алгебра</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+                    <p class="subtitle">Полное руководство по исследованию функций</p>
+
+                    <h2>Введение</h2>
+                    <p>Исследование функции — это подробный анализ ее поведения. Знание этих 12 свойств позволяет построить точный график и понять все ключевые особенности функции, заданной формулой <code>y = f(x)</code>.</p>
+
+                    <h2>1. Область определения (D(f))</h2>
+                    <p>Это множество всех допустимых значений аргумента <code>x</code>, при которых функция <code>f(x)</code> существует. При поиске области определения обращают внимание на знаменатели, корни четной степени и логарифмы.</p>
+                    <ul>
+                        <li>Знаменатель не равен нулю.</li>
+                        <li>Подкоренное выражение четной степени неотрицательно.</li>
+                        <li>Аргумент логарифма строго положителен.</li>
+                    </ul>
+
+                    <h2>2. Область значений (E(f))</h2>
+                    <p>Это все значения <code>y</code>, которые функция принимает на своей области определения.</p>
+
+                    <h2>3. Монотонность</h2>
+                    <p>Функция может возрастать или убывать на разных промежутках. В старших классах это исследуют по знаку производной.</p>
+                    <ul>
+                        <li>Если <code>f'(x) &gt; 0</code>, функция возрастает.</li>
+                        <li>Если <code>f'(x) &lt; 0</code>, функция убывает.</li>
+                    </ul>
+
+                    <h2>4. Нули функции</h2>
+                    <p>Это значения <code>x</code>, при которых <code>f(x) = 0</code>. На графике это точки пересечения с осью Ox.</p>
+
+                    <h2>5. Промежутки знакопостоянства</h2>
+                    <p>Промежутки, где функция сохраняет знак:</p>
+                    <ul>
+                        <li><code>f(x) &gt; 0</code> — график выше Ox.</li>
+                        <li><code>f(x) &lt; 0</code> — график ниже Ox.</li>
+                    </ul>
+
+                    <h2>6. Ограниченность функции</h2>
+                    <p>Функция ограничена сверху, если все ее значения не превышают число <code>M</code>, и ограничена снизу, если все значения не меньше числа <code>m</code>.</p>
+
+                    <h2>7. Точки экстремума</h2>
+                    <p>Точки локального максимума и минимума, где функция меняет направление возрастания/убывания.</p>
+
+                    <h2>8. Четность функции</h2>
+                    <ul>
+                        <li><strong>Четная:</strong> <code>f(-x) = f(x)</code>, симметрия относительно Oy.</li>
+                        <li><strong>Нечетная:</strong> <code>f(-x) = -f(x)</code>, симметрия относительно начала координат.</li>
+                    </ul>
+
+                    <h2>9. Периодичность</h2>
+                    <p>Если существует <code>T ≠ 0</code>, такое что <code>f(x + T) = f(x)</code>, функция периодическая.</p>
+
+                    <h2>10. Непрерывность</h2>
+                    <p>Если график можно провести без отрыва, функция непрерывна. В противном случае есть точки разрыва.</p>
+
+                    <h2>11. Выпуклость и вогнутость</h2>
+                    <p>Свойство формы графика: где он «чашей» вниз или вверх. В старших классах анализируется через вторую производную.</p>
+
+                    <h2>12. Наибольшее и наименьшее значение</h2>
+                    <p>Это самые большие и самые маленькие значения функции на заданном промежутке или всей области определения.</p>
+
+                    <div class="support-banner">
+                        <h3>Нужна помощь?</h3>
+                        <p>Если у вас есть вопросы по теме, напишите в поддержку:</p>
+                        <p><a href="mailto:support@ilafrommath.tech">support@ilafrommath.tech</a></p>
+                    </div>
+            </div>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+
+    <script src="../../../script.js"></script>
+</body>
+
+</html>

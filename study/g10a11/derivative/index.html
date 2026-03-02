@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математический анализ: Производная</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-10-11">10-11 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Математический анализ: Производная</h1>
+        <p>Математический анализ</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+            <p class="subtitle">Понятие производной, правила дифференцирования и геометрический смысл</p>
+        </header>
+
+        <div class="content-section">
+            <h2>Что такое производная?</h2>
+            <p>Производная функции — это одна из основных концепций математического анализа, которая показывает скорость изменения функции в данной точке.</p>
+            <p>Производная функции f(x) в точке x₀ определяется как предел отношения приращения функции к приращению аргумента, когда приращение аргумента стремится к нулю:</p>
+            <div class="formula">f'(x₀) = lim<sub>Δx→0</sub> [f(x₀ + Δx) - f(x₀)] / Δx</div>
+            <p>Если этот предел существует, то функция называется дифференцируемой в точке x₀.</p>
+            <p>Производная обозначается различными способами:</p>
+            <ul>
+                <li>f'(x) — обозначение Лагранжа</li>
+                <li>df/dx — обозначение Лейбница</li>
+                <li>ẏ — обозначение Ньютона</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Геометрический смысл производной</h2>
+            <p>Геометрически производная функции в точке равна угловому коэффициенту (тангенсу угла наклона) касательной к графику функции в этой точке.</p>
+            <p>Если функция f(x) имеет производную в точке x₀, то уравнение касательной к графику функции в точке (x₀, f(x₀)) имеет вид:</p>
+            <div class="formula">y = f(x₀) + f'(x₀)(x - x₀)</div>
+            
+            <div class="example-box">
+                <h4>Пример: Геометрический смысл производной</h4>
+                <p>Для функции f(x) = x² в точке x₀ = 2:</p>
+                <p>f'(x) = 2x, поэтому f'(2) = 4</p>
+                <p>Уравнение касательной: y = 4 + 4(x - 2) = 4x - 4</p>
+                <p>Угол наклона касательной: α = arctg(4) ≈ 75.96°</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Физический смысл производной</h2>
+            <p>В физике производная имеет множество важных интерпретаций:</p>
+            <ul>
+                <li><strong>Скорость:</strong> Если s(t) — путь, пройденный телом за время t, то производная s'(t) = v(t) — это скорость тела в момент времени t</li>
+                <li><strong>Ускорение:</strong> Производная скорости v'(t) = a(t) — это ускорение тела</li>
+                <li><strong>Мощность:</strong> Если A(t) — работа, то производная A'(t) = P(t) — это мощность</li>
+                <li><strong>Сила тока:</strong> Если q(t) — заряд, то производная q'(t) = I(t) — это сила тока</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Основные правила дифференцирования</h2>
+            
+            <h3>1. Производная константы</h3>
+            <div class="formula">(c)' = 0</div>
+            <p>где c — постоянная</p>
+
+            <h3>2. Производная степенной функции</h3>
+            <div class="formula">(xⁿ)' = nxⁿ⁻¹</div>
+            <p>где n — любое действительное число</p>
+
+            <div class="example-box">
+                <h4>Примеры:</h4>
+                <p>(x³)' = 3x²</p>
+                <p>(x⁵)' = 5x⁴</p>
+                <p>(√x)' = (x¹/²)' = (1/2)x⁻¹/² = 1/(2√x)</p>
+            </div>
+
+            <h3>3. Производная суммы и разности</h3>
+            <div class="formula">(f(x) ± g(x))' = f'(x) ± g'(x)</div>
+
+            <h3>4. Производная произведения</h3>
+            <div class="formula">(f(x) · g(x))' = f'(x) · g(x) + f(x) · g'(x)</div>
+
+            <div class="example-box">
+                <h4>Пример: Производная произведения</h4>
+                <p>Найти производную функции f(x) = x² · sin(x)</p>
+                <p><strong>Решение:</strong></p>
+                <p>f'(x) = (x²)' · sin(x) + x² · (sin(x))'</p>
+                <p>f'(x) = 2x · sin(x) + x² · cos(x)</p>
+            </div>
+
+            <h3>5. Производная частного</h3>
+            <div class="formula">(f(x) / g(x))' = [f'(x) · g(x) - f(x) · g'(x)] / [g(x)]²</div>
+            <p>где g(x) ≠ 0</p>
+
+            <h3>6. Производная сложной функции (правило цепи)</h3>
+            <div class="formula">(f(g(x)))' = f'(g(x)) · g'(x)</div>
+
+            <div class="example-box">
+                <h4>Пример: Производная сложной функции</h4>
+                <p>Найти производную функции f(x) = (x² + 1)³</p>
+                <p><strong>Решение:</strong></p>
+                <p>Пусть g(x) = x² + 1, тогда f(x) = [g(x)]³</p>
+                <p>f'(x) = 3[g(x)]² · g'(x) = 3(x² + 1)² · 2x = 6x(x² + 1)²</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Производные элементарных функций</h2>
+            
+            <h3>Тригонометрические функции</h3>
+            <ul>
+                <li>(sin x)' = cos x</li>
+                <li>(cos x)' = -sin x</li>
+                <li>(tg x)' = 1/cos² x = sec² x</li>
+                <li>(ctg x)' = -1/sin² x = -csc² x</li>
+            </ul>
+
+            <h3>Обратные тригонометрические функции</h3>
+            <ul>
+                <li>(arcsin x)' = 1/√(1 - x²)</li>
+                <li>(arccos x)' = -1/√(1 - x²)</li>
+                <li>(arctg x)' = 1/(1 + x²)</li>
+                <li>(arcctg x)' = -1/(1 + x²)</li>
+            </ul>
+
+            <h3>Показательная и логарифмическая функции</h3>
+            <ul>
+                <li>(eˣ)' = eˣ</li>
+                <li>(aˣ)' = aˣ · ln a</li>
+                <li>(ln x)' = 1/x</li>
+                <li>(log<sub>a</sub> x)' = 1/(x · ln a)</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Примеры вычисления производных</h2>
+            
+            <div class="example-box">
+                <h4>Пример 1: Производная многочлена</h4>
+                <p>Найти производную функции f(x) = 3x⁴ - 2x³ + 5x - 7</p>
+                <p><strong>Решение:</strong></p>
+                <p>f'(x) = (3x⁴)' - (2x³)' + (5x)' - (7)'</p>
+                <p>f'(x) = 12x³ - 6x² + 5 - 0</p>
+                <p><strong>Ответ: f'(x) = 12x³ - 6x² + 5</strong></p>
+            </div>
+
+            <div class="example-box">
+                <h4>Пример 2: Производная частного</h4>
+                <p>Найти производную функции f(x) = (x² + 1) / (x - 1)</p>
+                <p><strong>Решение:</strong></p>
+                <p>f'(x) = [(x² + 1)' · (x - 1) - (x² + 1) · (x - 1)'] / (x - 1)²</p>
+                <p>f'(x) = [2x · (x - 1) - (x² + 1) · 1] / (x - 1)²</p>
+                <p>f'(x) = [2x² - 2x - x² - 1] / (x - 1)²</p>
+                <p>f'(x) = (x² - 2x - 1) / (x - 1)²</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Пример 3: Производная сложной функции</h4>
+                <p>Найти производную функции f(x) = sin(3x² + 2x)</p>
+                <p><strong>Решение:</strong></p>
+                <p>f'(x) = cos(3x² + 2x) · (3x² + 2x)'</p>
+                <p>f'(x) = cos(3x² + 2x) · (6x + 2)</p>
+                <p><strong>Ответ: f'(x) = (6x + 2) · cos(3x² + 2x)</strong></p>
+            </div>
+
+            <div class="example-box">
+                <h4>Пример 4: Производная произведения</h4>
+                <p>Найти производную функции f(x) = x · eˣ</p>
+                <p><strong>Решение:</strong></p>
+                <p>f'(x) = (x)' · eˣ + x · (eˣ)'</p>
+                <p>f'(x) = 1 · eˣ + x · eˣ</p>
+                <p>f'(x) = eˣ(1 + x)</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Применение производной</h2>
+            <p>Производная находит широкое применение в различных областях:</p>
+            <ul>
+                <li><strong>Исследование функций:</strong> нахождение экстремумов, точек перегиба, интервалов монотонности</li>
+                <li><strong>Физика:</strong> описание движения, скорости, ускорения, силы</li>
+                <li><strong>Экономика:</strong> анализ предельных издержек, предельной прибыли, эластичности спроса</li>
+                <li><strong>Инженерия:</strong> оптимизация конструкций, анализ устойчивости систем</li>
+                <li><strong>Биология:</strong> моделирование роста популяций, скорости химических реакций</li>
+            </ul>
+        </div>
+
+        <div class="support-banner">
+            <h3>Нужна помощь?</h3>
+            <p>Если у вас есть вопросы или предложения, обращайтесь в службу поддержки:</p>
+            <p><a href="mailto:support@ilafrommath.tech">support@ilafrommath.tech</a></p>
+        </div>
+</div>
+                </div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

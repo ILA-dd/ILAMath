@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математический анализ: Интеграл</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-10-11">10-11 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Математический анализ: Интеграл</h1>
+        <p>Математический анализ</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+
+            <p>Интегрирование — одна из ключевых операций в математическом анализе. Если производная показывает, *как быстро* функция изменяется, то интеграл позволяет *накапливать* эти изменения. Чаще всего интегрирование рассматривают как операцию, обратную дифференцированию.</p>
+
+            <h2>Неопределенный интеграл</h2>
+            <p><b>Неопределенный интеграл</b> — это по сути "анти-производная". Если у нас есть функция $f(x)$, то ее неопределенным интегралом называется такая функция $F(x)$, производная которой равна $f(x)$.</p>
+            <p>Такая функция $F(x)$ называется <b>первообразной</b> для $f(x)$.</p>
+
+            <p>Например, если $f(x) = 2x$, то ее первообразной будет $F(x) = x^2$, потому что производная $(x^2)' = 2x$.</p>
+            <p>Важный момент: производная от $x^2 + 5$ также равна $2x$. И от $x^2 - 100$ тоже. Производная любой константы (числа) равна нулю. Поэтому, когда мы находим неопределенный интеграл, мы всегда добавляем "константу интегрирования" $C$.</p>
+
+            <div class="formula">
+                $$ \int f(x) \,dx = F(x) + C $$
+            </div>
+
+            <p>Здесь $ \int $ — знак интеграла, $f(x)$ — подынтегральная функция, $dx$ — указывает на то, по какой переменной идет интегрирование.</p>
+
+            <h3>Таблица основных интегралов</h3>
+            <ul>
+                <li>$ \int 0 \,dx = C $</li>
+                <li>$ \int x^n \,dx = \frac{x^{n+1}}{n+1} + C $ (для $n \neq -1$)</li>
+                <li>$ \int \frac{1}{x} \,dx = \ln|x| + C $</li>
+                <li>$ \int e^x \,dx = e^x + C $</li>
+                <li>$ \int a^x \,dx = \frac{a^x}{\ln a} + C $</li>
+                <li>$ \int \sin(x) \,dx = -\cos(x) + C $</li>
+                <li>$ \int \cos(x) \,dx = \sin(x) + C $</li>
+            </ul>
+
+            <h2>Определенный интеграл</h2>
+            <p><b>Определенный интеграл</b> имеет четкие границы (пределы) интегрирования. Геометрически он представляет собой <b>площадь</b> под графиком функции $f(x)$ на отрезке от $a$ до $b$.</p>
+            
+            <p>Для его вычисления используется <b>формула Ньютона-Лейбница</b>, которая связывает определенный интеграл с первообразной:</p>
+
+            <div class="formula">
+                $$ \int_a^b f(x) \,dx = F(b) - F(a) $$
+            </div>
+
+            <p>Здесь $a$ — нижний предел, $b$ — верхний предел, а $F(x)$ — любая первообразная для $f(x)$. Константа $C$ здесь не нужна, так как она сократится при вычитании: $(F(b) + C) - (F(a) + C) = F(b) - F(a)$.</p>
+
+            <h2>Методы интегрирования</h2>
+            <p>Нахождение интегралов (особенно неопределенных) — задача порой нетривиальная. Существует множество методов, но два самых фундаментальных:</p>
+
+            <h3>1. Метод замены (Подстановка)</h3>
+            <p>Этот метод используется, когда подынтегральное выражение можно упростить, введя новую переменную. Он основан на правиле дифференцирования сложной функции.</p>
+            <p><b>Пример:</b> Найдем $ \int (2x + 3)^5 \,dx $.</p>
+            <p>Пусть $t = 2x + 3$. Тогда $dt = (2x + 3)' \,dx = 2 \,dx$, откуда $dx = \frac{dt}{2}$.</p>
+            <p>Подставляем: $ \int t^5 \frac{dt}{2} = \frac{1}{2} \int t^5 \,dt = \frac{1}{2} \cdot \frac{t^6}{6} + C = \frac{t^6}{12} + C $.</p>
+            <p>Возвращаемся к $x$: $ \frac{(2x + 3)^6}{12} + C $.</p>
+
+            <h3>2. Интегрирование по частям</h3>
+            <p>Этот метод основан на правиле дифференцирования произведения. Он применяется, когда под интегралом стоит произведение двух функций.</p>
+            <p>Формула:</p>
+            <div class="formula">
+                $$ \int u \,dv = uv - \int v \,du $$
+            </div>
+            <p><b>Пример:</b> Найдем $ \int x \cdot \cos(x) \,dx $.</p>
+            <p>Пусть $u = x$ (то, что мы будем дифференцировать) и $dv = \cos(x) \,dx$ (то, что будем интегрировать).</p>
+            <p>Тогда $du = dx$ и $v = \int \cos(x) \,dx = \sin(x)$.</p>
+            <p>Подставляем в формулу:</p>
+            <p>$ \int x \cdot \cos(x) \,dx = x \cdot \sin(x) - \int \sin(x) \,dx = x \cdot \sin(x) - (-\cos(x)) + C = x \cdot \sin(x) + \cos(x) + C $</p>
+        </div>
+    </div>
+</div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

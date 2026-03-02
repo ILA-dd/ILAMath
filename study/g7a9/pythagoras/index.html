@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Геометрия: Теорема Пифагора</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+            },
+            svg: {
+                fontCache: "global"
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-7-9">7-9 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Геометрия: Теорема Пифагора</h1>
+        <p>Геометрия</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+            <h2>Формулировка теоремы</h2>
+            <p>Теорема Пифагора — одна из основополагающих теорем евклидовой геометрии, устанавливающая соотношение между сторонами прямоугольного треугольника.</p>
+            <p><strong>Формулировка:</strong> В прямоугольном треугольнике квадрат длины гипотенузы равен сумме квадратов длин катетов.</p>
+            
+            <p>Если $c$ — длина гипотенузы (сторона, лежащая напротив прямого угла), а $a$ и $b$ — длины катетов (стороны, образующие прямой угол), то теорему можно записать в виде формулы:</p>
+            
+            <div class="formula">
+                $$a^2 + b^2 = c^2$$
+            </div>
+
+            <h3>Обратная теорема Пифагора</h3>
+            <p>Верна и обратная теорема: если в треугольнике со сторонами $a, b, c$ выполняется равенство $a^2 + b^2 = c^2$, то этот треугольник является прямоугольным, причем прямой угол лежит напротив стороны $c$.</p>
+
+            <h2>Практическое применение</h2>
+            <p>Теорема Пифагора используется повсеместно: от строительства и навигации до графического дизайна и теоретической физики. Она позволяет находить расстояния и длины по двум известным величинам, образующим прямой угол.</p>
+
+            <div class="example">
+                <h3>Пример 1: Нахождение гипотенузы</h3>
+                <p><strong>Задача:</strong> Катеты прямоугольного треугольника равны 6 см и 8 см. Найдите гипотенузу.</p>
+                <p><strong>Решение:</strong></p>
+                <p>Используем формулу $a^2 + b^2 = c^2$:</p>
+                <p>$6^2 + 8^2 = c^2$</p>
+                <p>$36 + 64 = c^2$</p>
+                <p>$100 = c^2$</p>
+                <p>$c = \sqrt{100} = 10$ см.</p>
+                <p><strong>Ответ:</strong> Гипотенуза равна 10 см.</p>
+            </div>
+            
+            <div class="example">
+                <h3>Пример 2: Нахождение катета</h3>
+                <p><strong>Задача:</strong> Лестница длиной 5 метров приставлена к стене. Нижний конец лестницы находится в 3 метрах от стены. На какой высоте находится верхний конец лестницы?</p>
+                <p><strong>Решение:</strong></p>
+                <p>Лестница, стена и земля образуют прямоугольный треугольник. Лестница — это гипотенуза ($c = 5$ м), а расстояние от стены — один из катетов ($a = 3$ м). Нам нужно найти второй катет (высоту $b$).</p>
+                <p>$a^2 + b^2 = c^2$</p>
+                <p>$3^2 + b^2 = 5^2$</p>
+                <p>$9 + b^2 = 25$</p>
+                <p>$b^2 = 25 - 9$</p>
+                <p>$b^2 = 16$</p>
+                <p>$b = \sqrt{16} = 4$ м.</p>
+                <p><strong>Ответ:</strong> Верхний конец лестницы находится на высоте 4 метра.</p>
+            </div>
+
+            <h3>Пифагоровы тройки</h3>
+            <p>Это наборы из трех <strong>целых чисел</strong> ($a, b, c$), которые удовлетворяют уравнению $a^2 + b^2 = c^2$. Их удобно запомнить, чтобы быстро решать задачи.</p>
+            <p>Самые известные "пифагоровы тройки":</p>
+            <ul>
+                <li>(3, 4, 5) &rarr; $3^2 + 4^2 = 9 + 16 = 25 = 5^2$</li>
+                <li>(6, 8, 10) &rarr; (это тройка 3, 4, 5, умноженная на 2)</li>
+                <li>(5, 12, 13) &rarr; $5^2 + 12^2 = 25 + 144 = 169 = 13^2$</li>
+                <li>(8, 15, 17) &rarr; $8^2 + 15^2 = 64 + 225 = 289 = 17^2$</li>
+            </ul>
+        </div>
+        
+        <div class="support-banner">
+            <h3>Нужна помощь?</h3>
+            <p>Если у вас есть вопросы или предложения, обращайтесь в службу поддержки:</p>
+            <p><a href="mailto:support@ilafrommath.tech">support@ilafrommath.tech</a></p>
+        </div>
+            </div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

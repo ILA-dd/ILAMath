@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математический анализ: Пределы</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-10-11">10-11 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Математический анализ: Пределы</h1>
+        <p>Математический анализ</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+
+            <p><b>Предел функции</b> — это одно из фундаментальных понятий математического анализа, на котором строятся производные и интегралы. Говоря простым языком, предел — это значение, к которому функция "бесконечно близко стремится", когда ее аргумент приближается к определенной точке.</p>
+            
+            <h2>Понятие предела функции</h2>
+            <p>Запись $ \lim_{x \to a} f(x) = L $ читается как "предел функции $f(x)$ при $x$, стремящемся к $a$, равен $L$".</p>
+            <p>Это означает, что мы можем сделать значение $f(x)$ сколь угодно близким к $L$, выбирая $x$ достаточно близким к $a$ (но не равным $a$).</p>
+
+            <p><b>Пример:</b> $ \lim_{x \to 2} (x + 3) = 5 $. 
+            Когда $x$ приближается к 2 (например, 1.9, 1.99, 2.01, 2.1), значение $(x + 3)$ приближается к 5.</p>
+
+            <div class="note">
+                <p><b>Неопределенности:</b></p>
+                <p>Пределы становятся особенно важны, когда мы не можем просто подставить значение. Это приводит к "неопределенностям", таким как:</p>
+                $$ \frac{0}{0}, \quad \frac{\infty}{\infty}, \quad 0 \cdot \infty, \quad \infty - \infty, \quad 1^\infty $$
+                <p>Для "раскрытия" таких неопределенностей и нужны специальные методы.</p>
+            </div>
+
+            <h2>Методы вычисления пределов</h2>
+
+            <h3>1. Прямая подстановка</h3>
+            <p>Если функция непрерывна в точке $a$ (проще говоря, если при подстановке $a$ не возникает деления на ноль или корня из отрицательного числа), предел равен значению функции в этой точке.</p>
+            <p><b>Пример:</b> $ \lim_{x \to 1} (3x^2 - 5x + 1) = 3(1)^2 - 5(1) + 1 = -1 $.</p>
+
+            <h3>2. Раскрытие неопределенности $ \frac{0}{0} $ (Разложение на множители)</h3>
+            <p>Если и числитель, и знаменатель равны 0 в точке $a$, это значит, что у них есть общий множитель $(x - a)$, который можно сократить.</p>
+            <p><b>Пример:</b> $ \lim_{x \to 3} \frac{x^2 - 9}{x - 3} $.</p>
+            <p>Подстановка 3 дает $ \frac{0}{0} $. Разложим числитель:</p>
+            <div class="formula-block">
+                $$ \lim_{x \to 3} \frac{(x - 3)(x + 3)}{x - 3} = \lim_{x \to 3} (x + 3) = 3 + 3 = 6 $$
+            </div>
+
+            <h3>3. Раскрытие неопределенности $ \frac{0}{0} $ (Умножение на сопряженное)</h3>
+            <p>Если в числителе или знаменателе есть корень, часто помогает умножение на сопряженное выражение.</p>
+            <p><b>Пример:</b> $ \lim_{x \to 0} \frac{\sqrt{x + 1} - 1}{x} $.</p>
+            <p>Подстановка 0 дает $ \frac{0}{0} $. Умножим числитель и знаменатель на $(\sqrt{x + 1} + 1)$:
+            </p>
+            <div class="formula-block">
+                $$ \begin{align*} \lim_{x \to 0} \frac{(\sqrt{x + 1} - 1)(\sqrt{x + 1} + 1)}{x(\sqrt{x + 1} + 1)} &= \lim_{x \to 0} \frac{(x + 1) - 1}{x(\sqrt{x + 1} + 1)} \\ &= \lim_{x \to 0} \frac{x}{x(\sqrt{x + 1} + 1)} \\ &= \lim_{x \to 0} \frac{1}{\sqrt{x + 1} + 1} \\ &= \frac{1}{\sqrt{0 + 1} + 1} = \frac{1}{1 + 1} = \frac{1}{2} \end{align*} $$
+            </div>
+
+            <h3>4. Раскрытие неопределенности $ \frac{\infty}{\infty} $ (Пределы на бесконечности)</h3>
+            <p>Чтобы найти предел отношения двух многочленов при $x \to \infty$, нужно разделить числитель и знаменатель на $x$ в старшей степени знаменателя.</p>
+            <p><b>Пример:</b> $ \lim_{x \to \infty} \frac{2x^2 + 3}{5x^2 - 4x} $.</p>
+            <p>Старшая степень в знаменателе — $x^2$. Делим все на $x^2$:</p>
+            <div class="formula-block">
+                $$ \lim_{x \to \infty} \frac{\frac{2x^2}{x^2} + \frac{3}{x^2}}{\frac{5x^2}{x^2} - \frac{4x}{x^2}} = \lim_{x \to \infty} \frac{2 + \frac{3}{x^2}}{5 - \frac{4}{x}} $$
+            </div>
+            <p>Поскольку при $x \to \infty$ значения $ \frac{3}{x^2} $ и $ \frac{4}{x} $ стремятся к 0, получаем:</p>
+            <p>$ \frac{2 + 0}{5 - 0} = \frac{2}{5} $.</p>
+
+            <h2>Замечательные пределы</h2>
+            <p>Это два особенно важных "эталонных" предела, которые используются для решения более сложных задач.</p>
+            
+            <h3>Первый замечательный предел</h3>
+            <p>Связывает тригонометрию и пределы. Используется для раскрытия неопределенностей $ \frac{0}{0} $ с тригонометрическими функциями.</p>
+            <div class="formula-block">
+                $$ \lim_{x \to 0} \frac{\sin(x)}{x} = 1 $$
+            </div>
+
+            <h3>Второй замечательный предел</h3>
+            <p>Определяет число Эйлера $e$ ($e \approx 2.71828...$). Используется для раскрытия неопределенности $ 1^\infty $.</p>
+            <div class="formula-block">
+                $$ \lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e $$
+            </div>
+            <p>Другая его форма (при $x \to 0$):</p>
+            <div class="formula-block">
+                $$ \lim_{x \to 0} (1 + x)^{\frac{1}{x}} = e $$
+            </div>
+
+        </div>
+    </div>
+</div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Геометрия: Окружность и круг</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+            },
+            svg: {
+                fontCache: "global"
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-7-9">7-9 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>🔵 Геометрия: Окружность и круг</h1>
+        <p>Геометрия</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+            <h2>Основные определения</h2>
+            <p><strong>Окружность</strong> — это замкнутая линия на плоскости, все точки которой равноудалены от одной точки, называемой <strong>центром</strong> (обычно точка $O$).</p>
+            <p><strong>Круг</strong> — это часть плоскости, ограниченная окружностью (включая саму окружность).</p>
+            <ul>
+                <li><strong>Радиус ($R$)</strong>: Отрезок, соединяющий центр окружности с любой ее точкой.</li>
+                <li><strong>Хорда</strong>: Отрезок, соединяющий две любые точки на окружности.</li>
+                <li><strong>Диаметр ($D$)</strong>: Хорда, проходящая через центр. Диаметр равен двум радиусам ($D = 2R$).</li>
+            </ul>
+
+            <h2>Углы в окружности</h2>
+            <p>Углы, связанные с окружностью, являются ключом к решению многих геометрических задач.</p>
+
+            <h3>1. Центральный угол</h3>
+            <p><strong>Центральный угол</strong> — это угол, вершина которого находится в центре окружности, а стороны являются радиусами. Он измеряется дугой, на которую опирается.</p>
+            <p>Если центральный угол $\angle AOB$ опирается на дугу $AB$, то $\angle AOB = \text{дуга } AB$.</p>
+
+            <h3>2. Вписанный угол</h3>
+            <p><strong>Вписанный угол</strong> — это угол, вершина которого лежит на окружности, а стороны являются хордами.</p>
+            <div class="formula">
+                Теорема: Вписанный угол измеряется <strong>половиной</strong> дуги, на которую он опирается.
+            </div>
+            
+            <div class="example">
+                <h3>Следствия из теоремы о вписанном угле:</h3>
+                <ul>
+                    <li>Вписанные углы, опирающиеся на одну и ту же дугу, равны.</li>
+                    <li>Вписанный угол, опирающийся на диаметр (или полукружность), является прямым (равен 90°).</li>
+                </ul>
+            </div>
+
+            <h2>Свойства касательных и хорд</h2>
+            
+            <h3>Касательная к окружности</h3>
+            <p><strong>Касательная</strong> — это прямая, которая имеет с окружностью ровно одну общую точку (точку касания).</p>
+            <ul>
+                <li><strong>Основное свойство:</strong> Радиус, проведенный в точку касания, перпендикулярен касательной.</li>
+                <li>Отрезки касательных, проведенных из одной точки вне окружности, равны.</li>
+            </ul>
+
+            <h3>Свойства хорд</h3>
+            <ul>
+                <li>Диаметр, перпендикулярный хорде, делит эту хорду пополам.</li>
+                <li>Если две хорды $AB$ и $CD$ пересекаются в точке $M$, то $AM \cdot MB = CM \cdot MD$.</li>
+            </ul>
+
+
+            <h2>Длина окружности и площадь круга</h2>
+            <p>Для вычисления длины окружности и площади круга используется число <strong>$\pi$ (Пи)</strong> — математическая константа, равная отношению длины окружности к ее диаметру. Приблизительное значение $\pi \approx 3.14159$.</p>
+
+            <h3>Длина окружности ($C$)</h3>
+            <p>Длина окружности (периметр круга) вычисляется по одной из двух формул:</p>
+            <div class="formula">
+                $C = 2\pi R$ &nbsp;&nbsp;(через радиус)
+                <br>
+                $C = \pi D$ &nbsp;&nbsp;(через диаметр)
+            </div>
+
+            <h3>Площадь круга ($S$)</h3>
+            <p>Площадь круга вычисляется по формуле:</p>
+            <div class="formula">
+                $S = \pi R^2$
+            </div>
+            
+            <div class="example">
+                <h3>Пример задачи</h3>
+                <p><strong>Задача:</strong> Найдите длину окружности и площадь круга, если радиус $R = 5$ см.</p>
+                <p><strong>Решение:</strong></p>
+                <p>1. Длина окружности:<br>
+                $C = 2\pi R = 2 \cdot \pi \cdot 5 = 10\pi$ см.</p>
+                <p>2. Площадь круга:<br>
+                $S = \pi R^2 = \pi \cdot 5^2 = 25\pi$ см².</p>
+                <p><strong>Ответ:</strong> $C = 10\pi$ см, $S = 25\pi$ см².</p>
+            </div>
+
+            <div class="support-banner">
+                <h3>Нужна помощь?</h3>
+                <p>Если у вас есть вопросы или предложения, обращайтесь в службу поддержки:</p>
+                <p><a href="mailto:support@ilafrommath.tech">support@ilafrommath.tech</a></p>
+            </div>
+            </div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+    <title>Алгебра: Линейные уравнения — ILAMath</title>
+    
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    
+</head>
+<body>
+
+    <!-- Фон -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-7-9">7-9 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero заголовок -->
+    <section class="article-hero">
+        <h1>Линейные уравнения</h1>
+        <p>Основы решения уравнений: от простых формул до систем с двумя переменными.</p>
+    </section>
+
+    <div class="container">
+        
+        <!-- Основной контент -->
+        <article class="article-box">
+            <div class="article-content">
+                
+                <h2>Что такое линейное уравнение?</h2>
+                <p>Линейное уравнение — это уравнение, в котором переменные входят только в первой степени и не перемножаются друг с другом. Общий вид линейного уравнения с одной переменной:</p>
+                
+                <div class="math-block">ax + b = 0</div>
+                
+                <p>где <strong>a</strong> и <strong>b</strong> — числа (коэффициенты), причем <strong>a ≠ 0</strong>, а <strong>x</strong> — неизвестная переменная.</p>
+
+                <h2>Решение линейных уравнений с одной переменной</h2>
+                <h3>Алгоритм решения:</h3>
+                <ol>
+                    <li>Раскрыть скобки (если есть).</li>
+                    <li>Перенести все слагаемые с переменной в одну часть уравнения, а числа — в другую.</li>
+                    <li>Привести подобные слагаемые.</li>
+                    <li>Разделить обе части уравнения на коэффициент при переменной.</li>
+                </ol>
+
+                <div class="example-box">
+                    <h4>Пример 1: Простое уравнение</h4>
+                    <p>Решить уравнение: <strong>3x + 5 = 14</strong></p>
+                    <p><strong>Решение:</strong></p>
+                    <ul>
+                        <li>Переносим 5 вправо: 3x = 14 - 5</li>
+                        <li>Вычисляем: 3x = 9</li>
+                        <li>Делим на 3: x = 9 ÷ 3</li>
+                    </ul>
+                    <p><strong>Ответ: x = 3</strong></p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Пример 2: Уравнение со скобками</h4>
+                    <p>Решить уравнение: <strong>2(x - 3) = 4x + 6</strong></p>
+                    <p><strong>Решение:</strong></p>
+                    <ul>
+                        <li>Раскрываем скобки: 2x - 6 = 4x + 6</li>
+                        <li>Переносим слагаемые: 2x - 4x = 6 + 6</li>
+                        <li>Приводим подобные: -2x = 12</li>
+                        <li>Делим на -2: x = -6</li>
+                    </ul>
+                    <p><strong>Ответ: x = -6</strong></p>
+                </div>
+
+                <h2>Линейные уравнения с несколькими переменными</h2>
+                <p>Линейное уравнение с двумя переменными имеет вид:</p>
+                <div class="math-block">ax + by = c</div>
+                <p>где <strong>a</strong>, <strong>b</strong>, <strong>c</strong> — числа, причем <strong>a</strong> и <strong>b</strong> не равны нулю одновременно.</p>
+
+                <h3>Особенности:</h3>
+                <ul>
+                    <li>Такое уравнение имеет бесконечно много решений.</li>
+                    <li>Решения можно представить в виде пар чисел (x, y).</li>
+                    <li>Графиком линейного уравнения с двумя переменными является прямая линия.</li>
+                </ul>
+
+                <div class="example-box">
+                    <h4>Пример 3: Поиск решений</h4>
+                    <p>Найти пару решений для: <strong>2x + 3y = 12</strong></p>
+                    <p>Выразим y через x: y = (12 - 2x) / 3</p>
+                    <ul>
+                        <li>Если x = 0, то y = 4 → (0, 4)</li>
+                        <li>Если x = 3, то y = 2 → (3, 2)</li>
+                        <li>Если x = 6, то y = 0 → (6, 0)</li>
+                    </ul>
+                </div>
+
+                <h2>Системы линейных уравнений</h2>
+                <p>Система — это несколько уравнений, которые решаются совместно. Пример системы:</p>
+                <div class="math-block">
+                    a₁x + b₁y = c₁<br>
+                    a₂x + b₂y = c₂
+                </div>
+
+                <h3>Методы решения:</h3>
+                <ol>
+                    <li><strong>Метод подстановки:</strong> выразить одну переменную через другую и подставить во второе уравнение.</li>
+                    <li><strong>Метод сложения:</strong> сложить уравнения так, чтобы одна переменная исчезла.</li>
+                    <li><strong>Графический метод:</strong> найти точку пересечения прямых.</li>
+                </ol>
+
+                <div class="example-box">
+                    <h4>Пример 4: Метод подстановки</h4>
+                    <p>Система: { x + y = 5; 2x - y = 1 }</p>
+                    <ul>
+                        <li>Из 1-го уравнения: y = 5 - x</li>
+                        <li>Подставляем во 2-е: 2x - (5 - x) = 1</li>
+                        <li>2x - 5 + x = 1 → 3x = 6 → x = 2</li>
+                        <li>Находим y: y = 5 - 2 = 3</li>
+                    </ul>
+                    <p><strong>Ответ: (2, 3)</strong></p>
+                </div>
+
+                <div class="example-box">
+                    <h4>Пример 5: Метод сложения</h4>
+                    <p>Система: { 3x + 2y = 7; x - 2y = -1 }</p>
+                    <ul>
+                        <li>Складываем уравнения: (3x + x) + (2y - 2y) = 7 - 1</li>
+                        <li>4x = 6 → x = 1.5</li>
+                        <li>Подставляем x во 2-е уравнение: 1.5 - 2y = -1</li>
+                        <li>-2y = -2.5 → y = 1.25</li>
+                    </ul>
+                    <p><strong>Ответ: (1.5, 1.25)</strong></p>
+                </div>
+
+            </div>
+        </article>
+
+        <!-- Дополнительные материалы (Сетка карточек) -->
+        <div class="article-content">
+            <h2>Полезные материалы</h2>
+            <div class="related-grid">
+                <div class="card">
+                    <h3>Линейное уравнение (Wiki)</h3>
+                    <p>Подробная теория, виды уравнений и их свойства.</p>
+                    <a href="https://ru.wikipedia.org/wiki/Линейное_уравнение" target="_blank" class="card-link">Читать на Вики →</a>
+                </div>
+
+                <div class="card">
+                    <h3>Метод Гаусса</h3>
+                    <p>Универсальный метод для решения больших систем уравнений.</p>
+                    <a href="gauss-method/" class="card-link">Открыть материал →</a>
+                </div>
+
+                <div class="card">
+                    <h3>Матрицы и определители</h3>
+                    <p>Как решать системы уравнений с помощью матриц.</p>
+                    <a href="matrices-determinants/" class="card-link">Открыть материал →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Поддержка -->
+        <div class="support-box">
+            <h3>Остались вопросы?</h3>
+            <p>Наша команда преподавателей готова помочь с любой задачей.</p>
+            <br>
+            <a href="mailto:support@ilafrommath.tech">support@ilafrommath.tech</a>
+        </div>
+
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/study/index-test.html",
+      "permanent": false
+    },
+    {
+      "source": "/study",
+      "destination": "/study/index-test.html",
+      "permanent": false
+    },
+    {
+      "source": "/study/",
+      "destination": "/study/index-test.html",
+      "permanent": false
+    }
+  ]
+}

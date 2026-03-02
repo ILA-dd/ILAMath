@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Геометрия: Стереометрия</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-10-11">10-11 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Геометрия: Стереометрия</h1>
+        <p>Геометрия</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+
+            <p><b>Стереометрия</b> — это раздел геометрии, который изучает фигуры в пространстве. Основными объектами изучения являются многогранники (такие как куб, призма, пирамида) и тела вращения (цилиндр, конус, шар).</p>
+            <p>В стереометрии мы оперируем двумя основными характеристиками: <b>площадью поверхности</b> и <b>объемом</b>.</p>
+
+            <h2>Многогранники</h2>
+            <p><b>Многогранник</b> — это геометрическое тело, ограниченное плоскими многоугольниками (гранями).</p>
+
+            <h3>Призма</h3>
+            <p><b>Призма</b> — многогранник, у которого две грани (основания) — равные многоугольники, лежащие в параллельных плоскостях, а остальные грани (боковые) — параллелограммы.</p>
+            
+            <ul>
+                <li><b>Объем ($V$):</b> Произведение площади основания на высоту.
+                    <div class="formula-block">$$ V = S_{осн} \cdot H $$</div>
+                </li>
+                <li><b>Площадь боковой поверхности ($S_{бок}$):</b> Сумма площадей боковых граней. Для <b>прямой</b> призмы: $ S_{бок} = P \cdot H $, где $P$ — периметр основания.</li>
+                <li><b>Площадь полной поверхности ($S_{полн}$):</b> $ S_{полн} = S_{бок} + 2 \cdot S_{осн} $</li>
+            </ul>
+            <p><b>Куб</b> — это частный случай прямой призмы (и прямоугольного параллелепипеда), у которого все ребра равны ($a$).</p>
+            <ul>
+                <li>Объем: $ V = a^3 $</li>
+                <li>Площадь поверхности: $ S_{полн} = 6a^2 $</li>
+            </ul>
+
+            <h3>Пирамида</h3>
+            <p><b>Пирамида</b> — многогранник, у которого одна грань (основание) — многоугольник, а остальные грани (боковые) — треугольники с общей вершиной.</p>
+            
+
+[Image of a square pyramid]
+
+            <ul>
+                <li><b>Объем ($V$):</b>
+                    <div class="formula-block">$$ V = \frac{1}{3} S_{осн} \cdot H $$</div>
+                </li>
+                <li><b>Площадь боковой поверхности ($S_{бок}$):</b> Сумма площадей боковых граней.</li>
+                <li><b>Площадь полной поверхности ($S_{полн}$):</b> $ S_{полн} = S_{бок} + S_{осн} $</li>
+            </ul>
+
+            <h2>Тела вращения</h2>
+            <p><b>Тело вращения</b> образуется вращением плоской фигуры вокруг некоторой оси.</p>
+
+            <h3>Цилиндр</h3>
+            <p><b>Цилиндр</b> образуется вращением прямоугольника вокруг одной из его сторон.</p>
+            
+            <ul>
+                <li><b>Объем ($V$):</b> $ R $ — радиус основания, $H$ — высота.
+                    <div class="formula-block">$$ V = \pi R^2 H $$</div>
+                </li>
+                <li><b>Площадь боковой поверхности ($S_{бок}$):</b>
+                    <div class="formula-block">$$ S_{бок} = 2 \pi R H $$</div>
+                </li>
+                <li><b>Площадь полной поверхности ($S_{полн}$):</b>
+                    <div class="formula-block">$$ S_{полн} = 2 \pi R H + 2 \pi R^2 = 2 \pi R (H + R) $$</div>
+                </li>
+            </ul>
+
+            <h3>Конус</h3>
+            <p><b>Конус</b> образуется вращением прямоугольного треугольника вокруг одного из его катетов.</p>
+            
+            <ul>
+                <li><b>Объем ($V$):</b> $ R $ — радиус основания, $H$ — высота.
+                    <div class="formula-block">$$ V = \frac{1}{3} \pi R^2 H $$</div>
+                </li>
+                <li><b>Площадь боковой поверхности ($S_{бок}$):</b> $ L $ — образующая ($L = \sqrt{R^2 + H^2}$).
+                    <div class="formula-block">$$ S_{бок} = \pi R L $$</div>
+                </li>
+<li><b>Площадь полной поверхности ($S_{полн}$):</b>
+                    <div class="formula-block">$$ S_{полн} = S_{бок} + S_{осн} = \pi R L + \pi R^2 = \pi R (L + R) $$</div>
+                </li>
+            </ul>
+
+            <h3>Шар и Сфера</h3>
+            <p><b>Сфера</b> — это поверхность, все точки которой равноудалены от центра. <b>Шар</b> — это тело, ограниченное сферой.</p>
+            
+            <ul>
+                <li><b>Объем Шара ($V$):</b>
+                    <div class="formula-block">$$ V = \frac{4}{3} \pi R^3 $$</div>
+                </li>
+                <li><b>Площадь поверхности Сферы ($S$):</b>
+                    <div class="formula-block">$$ S = 4 \pi R^2 $$</div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

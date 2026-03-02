@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алгебра: Функции и графики</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+            },
+            svg: {
+                fontCache: "global"
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-7-9">7-9 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Алгебра: Функции и графики</h1>
+        <p>Алгебра</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+            <h2>Что такое функция?</h2>
+            <p><strong>Функция</strong> — это правило или закон, по которому каждому значению одной переменной (независимой переменной, или <strong>аргументом</strong>, $x$) ставится в соответствие одно-единственное значение другой переменной (зависимой переменной, $y$).</p>
+            <p>Это можно представить как "черный ящик", в который вы подаете $x$, а он выдает вам $y$. Записывается это как $y = f(x)$.</p>
+            <ul>
+                <li><strong>$x$</strong> — аргумент (то, что мы выбираем сами).</li>
+                <li><strong>$y$</strong> или <strong>$f(x)$</strong> — значение функции (то, что получаем).</li>
+                <li><strong>Область определения ($D(f)$)</strong> — все допустимые значения $x$.</li>
+                <li><strong>Область значений ($E(f)$)</strong> — все значения, которые может принимать $y$.</li>
+            </ul>
+            <p><strong>График функции</strong> — это множество всех точек на координатной плоскости, у которых абсциссы ($x$) — это допустимые значения аргумента, а ординаты ($y$) — соответствующие им значения функции.</p>
+
+            <h2>Линейная функция: $y = kx + b$</h2>
+            <p><strong>Линейная функция</strong> — это функция вида $y = kx + b$, где $k$ и $b$ — некоторые числа.</p>
+            <p>Графиком линейной функции всегда является <strong>прямая линия</strong>.</p>
+            
+            <h3>Коэффициенты $k$ и $b$</h3>
+            <ul>
+                <li><strong>$k$ — угловой коэффициент.</strong> Он отвечает за наклон прямой:
+                    <ul>
+                        <li>Если $k > 0$, функция возрастает (прямая идет "в горку").</li>
+                        <li>Если $k < 0$, функция убывает (прямая идет "под горку").</li>
+                        <li>Если $k = 0$, функция имеет вид $y = b$ — это горизонтальная прямая.</li>
+                    </ul>
+                </li>
+                <li><strong>$b$ — свободный член.</strong> Это точка, в которой график пересекает ось $OY$. Координаты этой точки $(0; b)$.</li>
+            </ul>
+
+            <div class="example">
+                <h3>Как построить график линейной функции</h3>
+                <p><strong>Задача:</strong> Построить график функции $y = 2x - 1$.</p>
+                <p><strong>Решение:</strong></p>
+                <p>Так как график — прямая, для его построения достаточно найти всего две точки. Возьмем два произвольных значения $x$ и найдем для них $y$.</p>
+                <ol class="example-steps">
+                    <li>
+                        Возьмем $x_1 = 0$.<br>
+                        $y_1 = 2 \cdot 0 - 1 = -1$.<br>
+                        Получили точку <strong>A (0; -1)</strong>. (Кстати, это и есть точка пересечения с осью $OY$, так как $b = -1$).
+                    </li>
+                    <li>
+                        Возьмем $x_2 = 2$.<br>
+                        $y_2 = 2 \cdot 2 - 1 = 4 - 1 = 3$.<br>
+                        Получили точку <strong>B (2; 3)</strong>.
+                    </li>
+                    <li>
+                        Отмечаем точки A и B на координатной плоскости и проводим через них прямую. Это и есть график функции $y = 2x - 1$.
+                    </li>
+                </ol>
+            </div>
+            
+            <h2>Квадратичная функция: $y = ax^2 + bx + c$</h2>
+            <p><strong>Квадратичная функция</strong> — это функция вида $y = ax^2 + bx + c$, где $a, b, c$ — числа, и $a \neq 0$.</p>
+            <p>Графиком квадратичной функции является <strong>парабола</strong>.</p>
+            
+            <h3>Ключевые элементы параболы</h3>
+            <ol>
+                <li><strong>Направление ветвей.</strong> Зависит от коэффициента $a$:
+                    <ul>
+                        <li>Если $a > 0$, ветви параболы направлены <strong>вверх</strong>.</li>
+                        <li>Если $a < 0$, ветви параболы направлены <strong>вниз</strong>.</li>
+                    </ul>
+                </li>
+                <li><strong>Вершина параболы.</strong> Это самая нижняя (при $a > 0$) или самая верхняя (при $a < 0$) точка параболы. Ее координаты $(x_0; y_0)$ находятся по формулам:
+                    <div class="formula">
+                        $x_0 = -\frac{b}{2a}$
+                    </div>
+                    Чтобы найти $y_0$, нужно подставить найденный $x_0$ обратно в функцию: $y_0 = a(x_0)^2 + b(x_0) + c$.
+                </li>
+                <li><strong>Точки пересечения с осями:</strong>
+                    <ul>
+                        <li><strong>С осью $OY$:</strong> Это точка $(0; c)$. Коэффициент $c$ показывает, где парабола пересекает ось $y$.</li>
+                        <li><strong>С осью $OX$:</strong> Это <strong>нули функции</strong>. Чтобы их найти, нужно приравнять функцию к нулю ($ax^2 + bx + c = 0$) и решить квадратное уравнение. У параболы может быть две, одна или ни одной точки пересечения с осью $OX$.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <div class="example">
+                <h3>Как построить график квадратичной функции</h3>
+                <p><strong>Задача:</strong> Построить график функции $y = x^2 - 4x + 3$.</p>
+                <p><strong>Решение (по шагам):</strong></p>
+                <ol class="example-steps">
+                    <li><strong>$a = 1$</strong>. Так как $a > 0$, ветви параболы направлены <strong>вверх</strong>.</li>
+                    <li>
+                        <strong>Найдем вершину $(x_0; y_0)$:</strong><br>
+                        $x_0 = -\frac{b}{2a} = -\frac{-4}{2 \cdot 1} = \frac{4}{2} = 2$.<br>
+                        $y_0 = (2)^2 - 4(2) + 3 = 4 - 8 + 3 = -1$.<br>
+                        Вершина параболы: <strong>(2; -1)</strong>.
+                    </li>
+                    <li>
+                        <strong>Точка пересечения с $OY$:</strong><br>
+                        $c = 3$. Точка <strong>(0; 3)</strong>.
+                    </li>
+                    <li>
+                        <strong>Точки пересечения с $OX$ (нули функции):</strong><br>
+                        $x^2 - 4x + 3 = 0$.<br>
+                        По теореме Виета (или через дискриминант):<br>
+                        $x_1 = 1$, $x_2 = 3$.<br>
+                        Точки: <strong>(1; 0)</strong> и <strong>(3; 0)</strong>.
+                    </li>
+                    <li>
+                        <strong>Дополнительная точка:</strong> Найдем точку, симметричную точке $(0; 3)$ относительно оси симметрии $x = x_0 = 2$. Эта точка будет $(4; 3)$.
+                    </li>
+                    <li>
+                        Отмечаем все найденные точки (2; -1), (0; 3), (1; 0), (3; 0), (4; 3) и плавно соединяем их, рисуя параболу.
+                    </li>
+                </ol>
+            </div>
+
+            <div class="support-banner">
+                <h3>Нужна помощь?</h3>
+                <p>Если у вас есть вопросы или предложения, обращайтесь в службу поддержки:</p>
+                <p><a href="mailto:support@ilafrommath.tech">support@ilafrommath.tech</a></p>
+            </div>
+            </div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

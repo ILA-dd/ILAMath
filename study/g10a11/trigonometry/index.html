@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алгебра: Тригонометрия</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-10-11">10-11 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Алгебра: Тригонометрия</h1>
+        <p>Алгебра</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+
+            <p><b>Тригонометрия</b> — это раздел математики, изучающий соотношения между сторонами и углами треугольников. В основе современной тригонометрии лежит понятие <b>тригонометрической окружности</b> — единичной окружности ($R=1$) с центром в начале координат.</p>
+
+            <h2>Основные тригонометрические функции</h2>
+            <p>Функции определяются через координаты $(x, y)$ точки $P$, полученной поворотом точки $(1, 0)$ на угол $\alpha$ вокруг начала координат.</p>
+            
+            
+
+            <ul>
+                <li><b>Синус ($\sin$)</b>: Ордината (координата $y$) точки $P$. $ \sin(\alpha) = y $</li>
+                <li><b>Косинус ($\cos$)</b>: Абсцисса (координата $x$) точки $P$. $ \cos(\alpha) = x $</li>
+                <li><b>Тангенс ($\tan$)</b>: Отношение синуса к косинусу. $ \tan(\alpha) = \frac{\sin(\alpha)}{\cos(\alpha)} = \frac{y}{x} $</li>
+                <li><b>Котангенс ($\cot$)</b>: Отношение косинуса к синусу. $ \cot(\alpha) = \frac{\cos(\alpha)}{\sin(\alpha)} = \frac{x}{y} $</li>
+            </ul>
+
+            <p>Из определения и теоремы Пифагора ($x^2 + y^2 = 1$) вытекает <b>основное тригонометрическое тождество</b>:</p>
+            <div class="formula">
+                $$ \sin^2(\alpha) + \cos^2(\alpha) = 1 $$
+            </div>
+
+            <h2>Свойства и графики функций</h2>
+
+            <h3>1. Синус ($y = \sin(x)$)</h3>
+            
+            <ul>
+                <li><b>Область определения ($D(f)$):</b> $x \in \mathbb{R}$ (любое действительное число).</li>
+                <li><b>Область значений ($E(f)$):</b> $y \in [-1, 1]$.</li>
+                <li><b>Периодичность:</b> Функция периодическая с главным периодом $T = 2\pi$. $ \sin(x + 2\pi) = \sin(x) $</li>
+                <li><b>Четность:</b> Функция нечетная. $ \sin(-x) = -\sin(x) $ (график симметричен относительно начала координат).</li>
+            </ul>
+
+            <h3>2. Косинус ($y = \cos(x)$)</h3>
+            
+
+[Image of cosine wave graph from -2pi to 2pi]
+
+            <ul>
+                <li><b>Область определения ($D(f)$):</b> $x \in \mathbb{R}$.</li>
+                <li><b>Область значений ($E(f)$):</b> $y \in [-1, 1]$.</li>
+                <li><b>Периодичность:</b> Функция периодическая с главным периодом $T = 2\pi$. $ \cos(x + 2\pi) = \cos(x) $</li>
+                <li><b>Четность:</b> Функция четная. $ \cos(-x) = \cos(x) $ (график симметричен относительно оси $Oy$).</li>
+            </ul>
+
+            <h3>3. Тангенс ($y = \tan(x)$)</h3>
+            
+            <ul>
+                <li><b>Область определения ($D(f)$):</b> $x \neq \frac{\pi}{2} + \pi n$, где $n \in \mathbb{Z}$. (В этих точках $ \cos(x) = 0 $).</li>
+                <li><b>Область значений ($E(f)$):</b> $y \in \mathbb{R}$ (от $-\infty$ до $+\infty$).</li>
+                <li><b>Периодичность:</b> Функция периодическая с главным периодом $T = \pi$. $ \tan(x + \pi) = \tan(x) $</li>
+                <li><b>Четность:</b> Функция нечетная. $ \tan(-x) = -\tan(x) $.</li>
+                <li><b>Асимптоты:</b> Вертикальные прямые $x = \frac{\pi}{2} + \pi n$.</li>
+            </ul>
+
+            <h2>Формулы приведения</h2>
+            <p><b>Формулы приведения</b> используются для того, чтобы свести тригонометрическую функцию любого угла к функции острого угла (от 0 до $90^\circ$ или от 0 до $\pi/2$).</p>
+            <p>При использовании этих формул применяется <b>мнемоническое правило</b>:</p>
+            <ol>
+                <li><b>Знак:</b> Знак итоговой функции определяется по знаку *исходной* функции в той четверти, в которой находится угол (если считать базовый угол $x$ острым).</li>
+                <li><b>Смена функции:</b>
+                    <ul>
+                        <li>Если угол имеет вид $ \pi \pm x $ или $ 2\pi \pm x $, функция <b>не меняется</b> (синус остается синусом, косинус косинусом и т.д.).</li>
+                        <li>Если угол имеет вид $ \frac{\pi}{2} \pm x $ или $ \frac{3\pi}{2} \pm x $, функция <b>меняется на "ко-функцию"</b> (синус на косинус, косинус на синус, тангенс на котангенс и наоборот).</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Примеры:</h3>
+            <ul>
+                <li>$ \sin(\pi - x) = \sin(x) $ (II четверть, $\sin$ положительный, функция не меняется)</li>
+                <li>$ \cos(\frac{\pi}{2} + x) = -\sin(x) $ (II четверть, $\cos$ отрицательный, функция меняется)</li>
+                <li>$ \tan(\pi + x) = \tan(x) $ (III четверть, $\tan$ положительный, функция не меняется)</li>
+                <li>$ \sin(\frac{3\pi}{2} - x) = -\cos(x) $ (III четверть, $\sin$ отрицательный, функция меняется)</li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

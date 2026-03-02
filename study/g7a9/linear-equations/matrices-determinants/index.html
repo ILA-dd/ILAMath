@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Матрицы и определители</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../../index-test.html">Главная</a>
+                <a href="../">Линейные уравнения</a>
+                <a href="../../../index.html#grades-7-9">7-9 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Матрицы и определители</h1>
+        <p>Алгебра • Линейные уравнения</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+            <p class="subtitle">Использование матриц для решения систем линейных уравнений</p>
+        </header>
+
+        <div class="content-section">
+            <h2>Что такое матрица?</h2>
+            <p>Матрица — это прямоугольная таблица чисел, расположенных в строках и столбцах. Матрица размера m×n содержит m строк и n столбцов.</p>
+            <p>Пример матрицы 3×3:</p>
+            <div class="matrix">
+                A = [a₁₁  a₁₂  a₁₃]<br>
+                    [a₂₁  a₂₂  a₂₃]<br>
+                    [a₃₁  a₃₂  a₃₃]
+            </div>
+            <p>Элемент матрицы aᵢⱼ находится на пересечении i-й строки и j-го столбца.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Матричная запись системы уравнений</h2>
+            <p>Система линейных уравнений может быть записана в матричном виде:</p>
+            <div class="formula">AX = B</div>
+            <p>где:</p>
+            <ul>
+                <li><strong>A</strong> — матрица коэффициентов системы</li>
+                <li><strong>X</strong> — столбец неизвестных переменных</li>
+                <li><strong>B</strong> — столбец свободных членов</li>
+            </ul>
+
+            <div class="example-box">
+                <h4>Пример:</h4>
+                <p>Система уравнений:</p>
+                <div class="formula">
+                    2x + 3y = 7<br>
+                    4x - y = 1
+                </div>
+                <p>В матричном виде:</p>
+                <div class="matrix">
+                    [2   3] [x]   [7]<br>
+                    [4  -1] [y] = [1]
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Определитель матрицы</h2>
+            <p>Определитель (детерминант) — это число, которое ставится в соответствие квадратной матрице. Определитель матрицы A обозначается как det(A) или |A|.</p>
+
+            <h3>Определитель матрицы 2×2:</h3>
+            <div class="matrix">
+                |a  b|<br>
+                |c  d| = ad - bc
+            </div>
+
+            <div class="example-box">
+                <h4>Пример:</h4>
+                <div class="matrix">
+                    |2  3|<br>
+                    |4 -1| = 2×(-1) - 3×4 = -2 - 12 = -14
+                </div>
+            </div>
+
+            <h3>Определитель матрицы 3×3 (правило Сарруса):</h3>
+            <p>Для матрицы:</p>
+            <div class="matrix">
+                [a₁₁  a₁₂  a₁₃]<br>
+                [a₂₁  a₂₂  a₂₃]<br>
+                [a₃₁  a₃₂  a₃₃]
+            </div>
+            <p>Определитель вычисляется по формуле:</p>
+            <div class="formula">
+                det = a₁₁a₂₂a₃₃ + a₁₂a₂₃a₃₁ + a₁₃a₂₁a₃₂ - a₁₃a₂₂a₃₁ - a₁₁a₂₃a₃₂ - a₁₂a₂₁a₃₃
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Решение систем уравнений методом Крамера</h2>
+            <p>Метод Крамера использует определители для решения систем линейных уравнений. Применим только для систем, где количество уравнений равно количеству неизвестных и определитель матрицы коэффициентов не равен нулю.</p>
+
+            <h3>Алгоритм метода Крамера:</h3>
+            <ol>
+                <li>Вычислить определитель основной матрицы системы Δ = det(A)</li>
+                <li>Если Δ ≠ 0, система имеет единственное решение</li>
+                <li>Для каждой переменной xᵢ вычислить определитель Δᵢ, заменив i-й столбец на столбец свободных членов</li>
+                <li>Найти значение переменной: xᵢ = Δᵢ / Δ</li>
+            </ol>
+
+            <div class="example-box">
+                <h4>Пример: Решить систему методом Крамера</h4>
+                <div class="formula">
+                    2x + 3y = 7<br>
+                    4x - y = 1
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>Шаг 1: Вычисляем основной определитель</h4>
+                <div class="matrix">
+                    Δ = |2   3| = 2×(-1) - 3×4 = -2 - 12 = -14<br>
+                        |4  -1|
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>Шаг 2: Вычисляем определитель для x</h4>
+                <div class="matrix">
+                    Δₓ = |7   3| = 7×(-1) - 3×1 = -7 - 3 = -10<br>
+                         |1  -1|
+                </div>
+                <p>x = Δₓ / Δ = -10 / (-14) = 5/7</p>
+            </div>
+
+            <div class="step">
+                <h4>Шаг 3: Вычисляем определитель для y</h4>
+                <div class="matrix">
+                    Δᵧ = |2  7| = 2×1 - 7×4 = 2 - 28 = -26<br>
+                         |4  1|
+                </div>
+                <p>y = Δᵧ / Δ = -26 / (-14) = 13/7</p>
+            </div>
+
+            <div class="example-box">
+                <h4>Ответ:</h4>
+                <p><strong>x = 5/7, y = 13/7</strong></p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Обратная матрица</h2>
+            <p>Обратная матрица A⁻¹ для квадратной матрицы A — это такая матрица, что:</p>
+            <div class="formula">A × A⁻¹ = A⁻¹ × A = E</div>
+            <p>где E — единичная матрица (на главной диагонали единицы, остальные элементы нули).</p>
+
+            <h3>Условие существования обратной матрицы:</h3>
+            <p>Обратная матрица существует только если определитель исходной матрицы не равен нулю: det(A) ≠ 0</p>
+
+            <h3>Обратная матрица для матрицы 2×2:</h3>
+            <div class="matrix">
+                A = [a  b]<br>
+                    [c  d]<br><br>
+                A⁻¹ = (1/det(A)) × [d  -b]<br>
+                                   [-c  a]
+            </div>
+
+            <div class="example-box">
+                <h4>Пример:</h4>
+                <p>Найти обратную матрицу для:</p>
+                <div class="matrix">
+                    A = [2  3]<br>
+                        [4 -1]
+                </div>
+                <p>det(A) = -14</p>
+                <div class="matrix">
+                    A⁻¹ = (1/-14) × [-1  -3] = [1/14   3/14]<br>
+                                    [-4   2]   [4/14  -2/14]
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Решение систем через обратную матрицу</h2>
+            <p>Если система записана в виде AX = B и существует A⁻¹, то решение находится по формуле:</p>
+            <div class="formula">X = A⁻¹ × B</div>
+
+            <div class="example-box">
+                <h4>Пример:</h4>
+                <p>Решить систему:</p>
+                <div class="formula">
+                    2x + 3y = 7<br>
+                    4x - y = 1
+                </div>
+                <p>В матричном виде: AX = B</p>
+                <p>X = A⁻¹ × B = [1/14   3/14] [7] = [5/7]<br>
+                                 [4/14  -2/14] [1]   [13/7]</p>
+                <p><strong>Ответ: x = 5/7, y = 13/7</strong></p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Свойства определителей</h2>
+            <ul>
+                <li>Определитель не меняется при транспонировании матрицы</li>
+                <li>Если поменять местами две строки (столбца), определитель меняет знак</li>
+                <li>Если все элементы строки (столбца) умножить на число k, определитель умножится на k</li>
+                <li>Если к одной строке прибавить другую, умноженную на число, определитель не изменится</li>
+                <li>Определитель равен нулю, если строки (столбцы) линейно зависимы</li>
+                <li>Определитель произведения матриц равен произведению определителей</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Применение матриц</h2>
+            <p>Матрицы широко используются в различных областях:</p>
+            <ul>
+                <li><strong>Решение систем уравнений:</strong> методы Крамера, обратной матрицы, Гаусса</li>
+                <li><strong>Компьютерная графика:</strong> преобразования координат, повороты, масштабирование</li>
+                <li><strong>Экономика:</strong> моделирование экономических процессов, анализ данных</li>
+                <li><strong>Физика:</strong> квантовая механика, теория относительности</li>
+                <li><strong>Машинное обучение:</strong> обработка данных, нейронные сети</li>
+                <li><strong>Криптография:</strong> шифрование информации</li>
+            </ul>
+        </div>
+
+        <div class="support-banner">
+            <h3>Нужна помощь?</h3>
+            <p>Если у вас есть вопросы или предложения, обращайтесь в службу поддержки:</p>
+            <p><a href="mailto:support@ilafrommath.tech">support@ilafrommath.tech</a></p>
+        </div>
+</div>
+                </div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

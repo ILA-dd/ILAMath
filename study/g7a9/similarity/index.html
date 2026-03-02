@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Геометрия: Подобие треугольников</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]]
+            },
+            svg: {
+                fontCache: "global"
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-7-9">7-9 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Подобие треугольников</h1>
+        <p>Геометрия</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+            <h2>Что такое подобные треугольники?</h2>
+            <p>Два треугольника называются <strong>подобными</strong>, если их углы соответственно равны, а стороны одного треугольника пропорциональны сходственным сторонам другого.</p>
+            <p>Это значит, что если треугольник $\triangle ABC$ подобен треугольнику $\triangle A_1B_1C_1$ (обозначается $\triangle ABC \sim \triangle A_1B_1C_1$), то:</p>
+            <ul>
+                <li>$\angle A = \angle A_1$, $\angle B = \angle B_1$, $\angle C = \angle C_1$</li>
+                <li>$\frac{AB}{A_1B_1} = \frac{BC}{B_1C_1} = \frac{AC}{A_1C_1} = k$</li>
+            </ul>
+            <p>Число $k$ называется <strong>коэффициентом подобия</strong>.</p>
+
+            <h2>Признаки подобия треугольников</h2>
+            <p>Чтобы доказать, что два треугольника подобны, не обязательно проверять все шесть условий (три угла и три стороны). Достаточно воспользоваться одним из трех признаков подобия.</p>
+
+            <h3>1. По двум углам (Первый признак)</h3>
+            <p><strong>Если два угла одного треугольника соответственно равны двум углам другого треугольника, то такие треугольники подобны.</strong></p>
+            <p>Это самый часто используемый признак. Если $\angle A = \angle A_1$ и $\angle B = \angle B_1$, то $\triangle ABC \sim \triangle A_1B_1C_1$. (Третьи углы у них также будут равны, так как сумма углов треугольника всегда 180°).</p>
+
+            <h3>2. По двум сторонам и углу между ними (Второй признак)</h3>
+            <p><strong>Если две стороны одного треугольника пропорциональны двум сторонам другого треугольника, а углы, заключенные между этими сторонами, равны, то такие треугольники подобны.</strong></p>
+            <div class="formula">
+                Если $\frac{AB}{A_1B_1} = \frac{AC}{A_1C_1}$ и $\angle A = \angle A_1$, то $\triangle ABC \sim \triangle A_1B_1C_1$.
+            </div>
+
+            <h3>3. По трем сторонам (Третий признак)</h3>
+            <p><strong>Если три стороны одного треугольника пропорциональны трем сходственным сторонам другого треугольника, то такие треугольники подобны.</strong></p>
+            <div class="formula">
+                Если $\frac{AB}{A_1B_1} = \frac{BC}{B_1C_1} = \frac{AC}{A_1C_1}$, то $\triangle ABC \sim \triangle A_1B_1C_1$.
+            </div>
+
+            <h2>Применение в решении задач</h2>
+            <p>Подобие треугольников — один из самых мощных инструментов в геометрии. Оно позволяет находить неизвестные длины, высоты, расстояния и доказывать различные теоремы.</p>
+
+            <div class="example">
+                <h3>Пример 1: Нахождение высоты предмета</h3>
+                <p><strong>Задача:</strong> Дерево отбрасывает тень длиной 15 м. В то же время человек ростом 1.8 м отбрасывает тень длиной 2.7 м. Найдите высоту дерева.</p>
+                <p><strong>Решение:</strong></p>
+                <p>Солнечные лучи падают параллельно, поэтому они образуют одинаковые углы с поверхностью земли. Дерево и человек стоят перпендикулярно земле (под углом 90°).</p>
+                <p>Получаем два прямоугольных треугольника: один образован деревом (катет $H$) и его тенью (катет 15 м), другой — человеком (катет 1.8 м) и его тенью (катет 2.7 м). У этих треугольников два угла равны (прямой угол и угол падения солнечных лучей). Значит, они подобны по первому признаку.</p>
+                <p>Составим пропорцию:</p>
+                <div class="formula">
+                    $\frac{\text{Высота дерева}}{\text{Рост человека}} = \frac{\text{Тень дерева}}{\text{Тень человека}}$<br>
+                    $\frac{H}{1.8} = \frac{15}{2.7}$
+                </div>
+                <p>Выразим $H$:</p>
+                <p>$H = \frac{15 \times 1.8}{2.7} = \frac{27}{2.7} = 10$ м.</p>
+                <p><strong>Ответ:</strong> Высота дерева — 10 метров.</p>
+            </div>
+
+            <h3>Отношение площадей подобных треугольников</h3>
+            <p>Очень важное свойство, которое часто используется в задачах:</p>
+            <p><strong>Отношение площадей двух подобных треугольников равно квадрату коэффициента подобия.</strong></p>
+            <div class="formula">
+                Если $\triangle ABC \sim \triangle A_1B_1C_1$ с коэффициентом $k$, то:<br>
+                $\frac{S_{ABC}}{S_{A_1B_1C_1}} = k^2$
+            </div>
+            <p>Например, если стороны одного треугольника в 3 раза больше сторон другого, то его площадь будет в $3^2 = 9$ раз больше.</p>
+        </div>
+        
+        <div class="support-banner">
+            <h3>Нужна помощь?</h3>
+            <p>Если у вас есть вопросы или предложения, обращайтесь в службу поддержки:</p>
+            <p><a href="mailto:support@ilafrommath.tech">support@ilafrommath.tech</a></p>
+        </div>
+            </div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+

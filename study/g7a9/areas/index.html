@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Геометрия: Площади фигур</title>
+
+    <!-- Подключаем современные шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Единый CSS стиль -->
+    <link rel="stylesheet" href="../../../style.css">
+</head>
+
+<body>
+
+    <!-- Фон с плавающими пятнами -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <nav>
+        <div class="nav-container">
+            <a href="../../index-test.html" class="logo"><span class="brand-mark" aria-hidden="true"></span>ILAMath</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="../../index-test.html">Главная</a>
+                <a href="../../index.html#grades-7-9">7-9 классы</a>
+            </div>
+
+            <div class="controls">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Секция статьи -->
+    <section class="article-hero">
+        <h1>Геометрия: Площади фигур</h1>
+        <p>Геометрия</p>
+    </section>
+
+    <div class="article-container">
+        <article class="article-box">
+            <div class="article-content">
+            <p class="subtitle">Формулы для вычисления площадей различных геометрических фигур</p>
+        </header>
+
+        <div class="content-section">
+            <h2>Что такое площадь?</h2>
+            <p>Площадь — это численная характеристика двумерной геометрической фигуры, показывающая, сколько единичных квадратов помещается внутри этой фигуры. Площадь измеряется в квадратных единицах (м², см², км² и т.д.).</p>
+        </div>
+
+        <div class="content-section">
+            <h2>Площади основных фигур</h2>
+            <div class="figure-grid">
+                <div class="figure-card">
+                    <h4>Квадрат</h4>
+                    <p>Сторона: a</p>
+                    <div class="formula">S = a²</div>
+                    <div class="example">
+                        <h4>Пример:</h4>
+                        <p>Если a = 5 см, то S = 5² = 25 см²</p>
+                    </div>
+                </div>
+
+                <div class="figure-card">
+                    <h4>Прямоугольник</h4>
+                    <p>Длина: a, ширина: b</p>
+                    <div class="formula">S = a × b</div>
+                    <div class="example">
+                        <h4>Пример:</h4>
+                        <p>Если a = 6 м, b = 4 м, то S = 6 × 4 = 24 м²</p>
+                    </div>
+                </div>
+
+                <div class="figure-card">
+                    <h4>Треугольник</h4>
+                    <p>Основание: a, высота: h</p>
+                    <div class="formula">S = (a × h) / 2</div>
+                    <div class="example">
+                        <h4>Пример:</h4>
+                        <p>Если a = 8 см, h = 5 см, то S = (8 × 5) / 2 = 20 см²</p>
+                    </div>
+                </div>
+
+                <div class="figure-card">
+                    <h4>Параллелограмм</h4>
+                    <p>Основание: a, высота: h</p>
+                    <div class="formula">S = a × h</div>
+                    <div class="example">
+                        <h4>Пример:</h4>
+                        <p>Если a = 7 см, h = 4 см, то S = 7 × 4 = 28 см²</p>
+                    </div>
+                </div>
+
+                <div class="figure-card">
+                    <h4>Ромб</h4>
+                    <p>Диагонали: d₁, d₂</p>
+                    <div class="formula">S = (d₁ × d₂) / 2</div>
+                    <div class="example">
+                        <h4>Пример:</h4>
+                        <p>Если d₁ = 6 см, d₂ = 8 см, то S = (6 × 8) / 2 = 24 см²</p>
+                    </div>
+                </div>
+
+                <div class="figure-card">
+                    <h4>Трапеция</h4>
+                    <p>Основания: a, b, высота: h</p>
+                    <div class="formula">S = ((a + b) × h) / 2</div>
+                    <div class="example">
+                        <h4>Пример:</h4>
+                        <p>Если a = 5 см, b = 9 см, h = 4 см, то S = ((5 + 9) × 4) / 2 = 28 см²</p>
+                    </div>
+                </div>
+
+                <div class="figure-card">
+                    <h4>Круг</h4>
+                    <p>Радиус: r, π ≈ 3.14159</p>
+                    <div class="formula">S = π × r²</div>
+                    <div class="example">
+                        <h4>Пример:</h4>
+                        <p>Если r = 3 см, то S = π × 3² = 9π ≈ 28.27 см²</p>
+                    </div>
+                </div>
+
+                <div class="figure-card">
+                    <h4>Эллипс</h4>
+                    <p>Полуоси: a, b, π ≈ 3.14159</p>
+                    <div class="formula">S = π × a × b</div>
+                    <div class="example">
+                        <h4>Пример:</h4>
+                        <p>Если a = 4 см, b = 3 см, то S = π × 4 × 3 = 12π ≈ 37.70 см²</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Специальные формулы для треугольников</h2>
+            
+            <div class="formula-box">
+                <h4>Формула Герона</h4>
+                <p>Для треугольника со сторонами a, b, c:</p>
+                <p>Полупериметр: p = (a + b + c) / 2</p>
+                <div class="formula">S = √(p × (p - a) × (p - b) × (p - c))</div>
+                <div class="example">
+                    <h4>Пример:</h4>
+                    <p>Треугольник со сторонами 3, 4, 5:</p>
+                    <p>p = (3 + 4 + 5) / 2 = 6</p>
+                    <p>S = √(6 × (6-3) × (6-4) × (6-5)) = √(6 × 3 × 2 × 1) = √36 = 6</p>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <h4>Площадь через две стороны и угол между ними</h4>
+                <p>Для треугольника со сторонами a, b и углом α между ними:</p>
+                <div class="formula">S = (a × b × sin(α)) / 2</div>
+            </div>
+
+            <div class="formula-box">
+                <h4>Площадь прямоугольного треугольника</h4>
+                <p>Для треугольника с катетами a и b:</p>
+                <div class="formula">S = (a × b) / 2</div>
+            </div>
+
+            <div class="formula-box">
+                <h4>Площадь равностороннего треугольника</h4>
+                <p>Для треугольника со стороной a:</p>
+                <div class="formula">S = (a² × √3) / 4</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Площади многоугольников</h2>
+            
+            <div class="formula-box">
+                <h4>Правильный многоугольник</h4>
+                <p>Для правильного n-угольника со стороной a и апофемой (радиусом вписанной окружности) r:</p>
+                <div class="formula">S = (n × a × r) / 2</div>
+                <p>или через радиус описанной окружности R:</p>
+                <div class="formula">S = (n × R² × sin(360°/n)) / 2</div>
+            </div>
+
+            <div class="formula-box">
+                <h4>Правильный шестиугольник</h4>
+                <p>Для правильного шестиугольника со стороной a:</p>
+                <div class="formula">S = (3 × a² × √3) / 2</div>
+            </div>
+
+            <div class="formula-box">
+                <h4>Произвольный многоугольник (метод координат)</h4>
+                <p>Если известны координаты вершин (x₁, y₁), (x₂, y₂), ..., (xₙ, yₙ):</p>
+                <div class="formula">S = |Σ(xᵢ × yᵢ₊₁ - xᵢ₊₁ × yᵢ)| / 2</div>
+                <p>где сумма берется по всем вершинам, а индекс n+1 означает индекс 1 (замыкание многоугольника)</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Сектор и сегмент круга</h2>
+            
+            <div class="formula-box">
+                <h4>Площадь сектора круга</h4>
+                <p>Для сектора с радиусом r и центральным углом α (в градусах):</p>
+                <div class="formula">S = (π × r² × α) / 360°</div>
+                <p>или если угол в радианах:</p>
+                <div class="formula">S = (r² × α) / 2</div>
+            </div>
+
+            <div class="formula-box">
+                <h4>Площадь сегмента круга</h4>
+                <p>Площадь сегмента = площадь сектора - площадь треугольника</p>
+                <div class="formula">S = (r² × (α - sin(α))) / 2</div>
+                <p>где α — центральный угол в радианах</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Свойства площадей</h2>
+            <ul>
+                <li>Площадь всегда положительна</li>
+                <li>Площадь фигуры не изменяется при параллельном переносе</li>
+                <li>Площадь фигуры не изменяется при повороте</li>
+                <li>При гомотетии (подобии) с коэффициентом k площадь умножается на k²</li>
+                <li>Площадь объединения непересекающихся фигур равна сумме их площадей</li>
+                <li>Площадь пересечения фигур не превосходит площади каждой из них</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Практические советы</h2>
+            <ul>
+                <li>Всегда проверяйте единицы измерения — они должны быть одинаковыми</li>
+                <li>Для сложных фигур разбивайте их на простые части</li>
+                <li>Используйте формулу Герона, когда известны только стороны треугольника</li>
+                <li>Помните, что π ≈ 3.14159, но для точных вычислений используйте значение из калькулятора</li>
+                <li>При работе с углами следите за единицами измерения (градусы или радианы)</li>
+            </ul>
+        </div>
+
+        <div class="support-banner">
+            <h3>Нужна помощь?</h3>
+            <p>Если у вас есть вопросы или предложения, обращайтесь в службу поддержки:</p>
+            <p><a href="mailto:support@ilafrommath.tech">support@ilafrommath.tech</a></p>
+        </div>
+</div>
+                </div>
+        </article>
+    </div>
+<!-- JavaScript -->
+        <footer>
+        <p>&copy; <span id="year"></span> ILAMath. Образовательная платформа по математике.</p>
+    </footer>
+    <script src="../../../script.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
