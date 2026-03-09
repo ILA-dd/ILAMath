@@ -6,7 +6,7 @@
   ·
   <a href="study/index.html">Каталог тем</a>
   ·
-  <a href="mailto:support@ilafrommath.tech">Поддержка</a>
+  <a href="mailto:support@ilamath.ru">Поддержка</a>
 </p>
 
 <p align="center">
@@ -126,4 +126,4 @@ pwsh -File ./scripts/validate-links.ps1
 
 ## Контакты
 
-- Поддержка: [support@ilafrommath.tech](mailto:support@ilafrommath.tech)
+- Поддержка: [support@ilamath.ru](mailto:support@ilamath.ru)
