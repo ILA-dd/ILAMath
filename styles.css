@@ -250,7 +250,16 @@ img {
     gap: 0.55rem;
 }
 
+.main-auth-mode {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
 .main-auth-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-height: 42px;
     padding: 0.72rem 0.9rem;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -279,7 +288,20 @@ img {
 }
 
 .main-auth-form {
+    display: none;
     gap: 0.82rem;
+}
+
+#authModeRegister:checked ~ .main-auth-tabs label[for="authModeRegister"],
+#authModeLogin:checked ~ .main-auth-tabs label[for="authModeLogin"] {
+    border-color: rgba(255, 143, 64, 0.32);
+    background: linear-gradient(120deg, rgba(255, 143, 64, 0.16), rgba(255, 143, 64, 0.05));
+    color: var(--text);
+}
+
+#authModeRegister:checked ~ #registerForm,
+#authModeLogin:checked ~ #loginForm {
+    display: grid;
 }
 
 .main-auth-form .button {

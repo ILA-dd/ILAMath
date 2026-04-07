@@ -44,40 +44,43 @@
                 </a>
             </div>
 
+            <input class="main-auth-mode" type="radio" name="auth_mode" id="authModeRegister" checked>
+            <input class="main-auth-mode" type="radio" name="auth_mode" id="authModeLogin">
+
             <div class="main-auth-tabs" role="tablist" aria-label="Auth mode">
-                <button class="main-auth-tab is-active" type="button" data-auth-mode="register" aria-selected="true">Register</button>
-                <button class="main-auth-tab" type="button" data-auth-mode="login" aria-selected="false">Login</button>
+                <label class="main-auth-tab is-active" for="authModeRegister" data-auth-mode="register" aria-selected="true">Register</label>
+                <label class="main-auth-tab" for="authModeLogin" data-auth-mode="login" aria-selected="false">Login</label>
             </div>
 
             <form id="registerForm" class="form-stack main-auth-form">
                 <label class="field">
                     <span class="field__label">Username</span>
-                    <input name="register_username" type="text" placeholder="ila" maxlength="25" required>
+                    <input name="register_username" type="text" placeholder="username" maxlength="25" required>
                 </label>
                 <label class="field">
                     <span class="field__label">Display name</span>
-                    <input name="register_display_name" type="text" placeholder="ILA" maxlength="25">
+                    <input name="register_display_name" type="text" placeholder="Display name" maxlength="25">
                 </label>
                 <label class="field">
                     <span class="field__label">Password</span>
-                    <input name="register_password" type="password" placeholder="Минимум 4 символа" required>
+                    <input name="register_password" type="password" placeholder="Минимум 6 символов" required>
                 </label>
                 <button class="button button--primary" type="submit">Create account</button>
             </form>
 
-            <form id="loginForm" class="form-stack main-auth-form hidden">
+            <form id="loginForm" class="form-stack main-auth-form">
                 <label class="field">
                     <span class="field__label">Username</span>
-                    <input name="login_username" type="text" placeholder="ila" maxlength="25" required>
+                    <input name="login_username" type="text" placeholder="username" maxlength="25" required>
                 </label>
                 <label class="field">
                     <span class="field__label">Password</span>
-                    <input name="login_password" type="password" placeholder="alesha7720" required>
+                    <input name="login_password" type="password" placeholder="Password" required>
                 </label>
                 <button class="button button--primary" type="submit">Sign in</button>
             </form>
 
-            <p id="authPanelNote" class="footer-note">Создай новый аккаунт или войди в уже существующий. Для теста доступен `ila` с паролем `alesha7720`.</p>
+            <p id="authPanelNote" class="footer-note">Создай новый аккаунт или войди в существующий, чтобы открыть settings и собрать свой профиль.</p>
         </section>
 
         <main class="main-layout">

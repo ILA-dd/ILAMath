@@ -2067,6 +2067,8 @@ function initMainPage() {
     const authPanelEyebrow = document.getElementById("authPanelEyebrow");
     const authPanelNote = document.getElementById("authPanelNote");
     const authPanelClose = document.getElementById("authPanelClose");
+    const authModeRegister = document.getElementById("authModeRegister");
+    const authModeLogin = document.getElementById("authModeLogin");
     const authModeButtons = Array.from(document.querySelectorAll("[data-auth-mode]"));
     let current = getCurrentAccount();
 
@@ -2080,8 +2082,10 @@ function initMainPage() {
         const nextMode = mode === "login" ? "login" : "register";
         const isLogin = nextMode === "login";
 
-        registerForm?.classList.toggle("hidden", isLogin);
-        loginForm?.classList.toggle("hidden", !isLogin);
+        if (authModeRegister && authModeLogin) {
+            authModeRegister.checked = !isLogin;
+            authModeLogin.checked = isLogin;
+        }
 
         authModeButtons.forEach((button) => {
             const active = button.dataset.authMode === nextMode;
@@ -2099,7 +2103,7 @@ function initMainPage() {
 
         if (authPanelNote) {
             authPanelNote.textContent = isLogin
-                ? "Для теста доступен аккаунт ila с паролем alesha7720."
+                ? "Войди в свой аккаунт, чтобы продолжить работу с профилем."
                 : "Создай новый аккаунт и сразу перейди в settings, чтобы собрать свой профиль.";
         }
     };
@@ -2186,13 +2190,14 @@ function initMainPage() {
 
         mainHeaderAuth.innerHTML = `
             <div class="main-header-auth__group">
-                <button class="button button--ghost button--compact" type="button" data-open-auth="register">Register</button>
-                <button class="button button--primary button--compact" type="button" data-open-auth="login">Login</button>
+                <a class="button button--ghost button--compact" href="#authPanel" data-open-auth="register">Register</a>
+                <a class="button button--primary button--compact" href="#authPanel" data-open-auth="login">Login</a>
             </div>
         `;
 
         mainHeaderAuth.querySelectorAll("[data-open-auth]").forEach((button) => {
-            button.addEventListener("click", () => {
+            button.addEventListener("click", (event) => {
+                event.preventDefault();
                 openAuthPanel(button.dataset.openAuth || "register");
             });
         });
