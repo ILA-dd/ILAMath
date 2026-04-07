@@ -18,6 +18,7 @@ const VIEW_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const REDIS_LOCK_TTL_MS = 10_000;
 const REDIS_LOCK_WAIT_MS = 8_000;
 const REDIS_LOCK_RETRY_MS = 160;
+const REDIS_FETCH_TIMEOUT_MS = 3_500;
 
 let fileStoreQueue = Promise.resolve();
 
@@ -259,15 +260,37 @@ async function redisRequest(commandParts) {
         );
     }
 
-    const response = await fetch(config.url, {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${config.token}`,
-            "Content-Type": "application/json",
-        },
-        cache: "no-store",
-        body: JSON.stringify(commandParts),
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => {
+        controller.abort();
+    }, REDIS_FETCH_TIMEOUT_MS);
+
+    let response;
+
+    try {
+        response = await fetch(config.url, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${config.token}`,
+                "Content-Type": "application/json",
+            },
+            cache: "no-store",
+            body: JSON.stringify(commandParts),
+            signal: controller.signal,
+        });
+    } catch (error) {
+        clearTimeout(timeout);
+
+        if (error?.name === "AbortError") {
+            throw new Error(
+                "Redis storage is not reachable. Check UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN in Vercel."
+            );
+        }
+
+        throw error;
+    }
+
+    clearTimeout(timeout);
 
     const payload = await response.json().catch(() => ({}));
 

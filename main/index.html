@@ -52,7 +52,7 @@
                 <label class="main-auth-tab" for="authModeLogin" data-auth-mode="login" aria-selected="false">Login</label>
             </div>
 
-            <form id="registerForm" class="form-stack main-auth-form">
+            <form id="registerForm" class="form-stack main-auth-form" action="javascript:void(0);" method="post" novalidate>
                 <label class="field">
                     <span class="field__label">Username</span>
                     <input name="register_username" type="text" placeholder="username" maxlength="25" required>
@@ -68,7 +68,7 @@
                 <button class="button button--primary" type="submit">Create account</button>
             </form>
 
-            <form id="loginForm" class="form-stack main-auth-form">
+            <form id="loginForm" class="form-stack main-auth-form" action="javascript:void(0);" method="post" novalidate>
                 <label class="field">
                     <span class="field__label">Username</span>
                     <input name="login_username" type="text" placeholder="username" maxlength="25" required>

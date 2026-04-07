@@ -14,12 +14,14 @@ const FONT_MAP = {
 const WEEK_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const VIEW_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const SETTINGS_TAB_STORAGE_KEY = "ilamath_profiles_settings_tab_v1";
+const API_TIMEOUT_MS = 3500;
 const APP_STATE = {
     session: null,
     profilesCount: 0,
     latestProfiles: [],
     currentProfile: null,
     bootstrapLoaded: false,
+    bootstrapError: "",
 };
 let youtubeApiPromise = null;
 let pageTitleAnimationTimer = 0;
@@ -40,15 +42,35 @@ function cloneData(value) {
 
 async function apiFetch(path, options = {}) {
     const { body, headers = {}, ...rest } = options;
-    const response = await fetch(getRootPath(path), {
-        credentials: "same-origin",
-        ...rest,
-        headers: {
-            ...(body ? { "Content-Type": "application/json" } : {}),
-            ...headers,
-        },
-        body: body ? JSON.stringify(body) : undefined,
-    });
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+        controller.abort();
+    }, API_TIMEOUT_MS);
+
+    let response;
+
+    try {
+        response = await fetch(getRootPath(path), {
+            credentials: "same-origin",
+            ...rest,
+            headers: {
+                ...(body ? { "Content-Type": "application/json" } : {}),
+                ...headers,
+            },
+            body: body ? JSON.stringify(body) : undefined,
+            signal: controller.signal,
+        });
+    } catch (error) {
+        window.clearTimeout(timeout);
+
+        if (error?.name === "AbortError") {
+            throw new Error("Сервер профилей не отвечает. Проверь Redis и redeploy в Vercel.");
+        }
+
+        throw error;
+    }
+
+    window.clearTimeout(timeout);
 
     const contentType = response.headers.get("content-type") || "";
     const payload = contentType.includes("application/json")
@@ -68,6 +90,7 @@ async function loadBootstrapState(force = false) {
     }
 
     const payload = await apiFetch("api/bootstrap");
+    APP_STATE.bootstrapError = "";
     APP_STATE.session = payload.session || null;
     APP_STATE.profilesCount = Number(payload.profilesCount || 0);
     APP_STATE.latestProfiles = Array.isArray(payload.latestProfiles)
@@ -2078,6 +2101,14 @@ function initMainPage() {
 
     renderCommunityGrid(communityGrid, APP_STATE.latestProfiles);
 
+    if (APP_STATE.bootstrapError) {
+        showMessage(
+            mainMessage,
+            APP_STATE.bootstrapError,
+            "error"
+        );
+    }
+
     const setAuthMode = (mode) => {
         const nextMode = mode === "login" ? "login" : "register";
         const isLogin = nextMode === "login";
@@ -3068,6 +3099,7 @@ async function bootstrap() {
     try {
         await loadBootstrapState();
     } catch (error) {
+        APP_STATE.bootstrapError = error.message || "Backend is not reachable.";
         console.error(error);
     }
 
