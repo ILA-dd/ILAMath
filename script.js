@@ -1,3 +1,28 @@
+import { getApp, getApps, initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import {
+    createUserWithEmailAndPassword,
+    deleteUser,
+    getAuth,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signOut,
+    updateProfile as updateAuthProfile,
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js";
+import {
+    collection,
+    deleteDoc,
+    doc,
+    getCountFromServer,
+    getDoc,
+    getDocs,
+    getFirestore,
+    limit,
+    orderBy,
+    query,
+    runTransaction,
+    setDoc,
+} from "https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js";
+
 const STORAGE_KEYS = {
     accounts: "ilamath_profiles_accounts_v1",
     profiles: "ilamath_profiles_profiles_v1",
@@ -14,7 +39,7 @@ const FONT_MAP = {
 const WEEK_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const VIEW_COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const SETTINGS_TAB_STORAGE_KEY = "ilamath_profiles_settings_tab_v1";
-const API_TIMEOUT_MS = 3500;
+const FIREBASE_USERNAME_DOMAIN = "profiles.ilamath.app";
 const APP_STATE = {
     session: null,
     profilesCount: 0,
@@ -22,6 +47,12 @@ const APP_STATE = {
     currentProfile: null,
     bootstrapLoaded: false,
     bootstrapError: "",
+};
+const FIREBASE_STATE = {
+    app: null,
+    auth: null,
+    db: null,
+    authReadyPromise: null,
 };
 let youtubeApiPromise = null;
 let pageTitleAnimationTimer = 0;
@@ -40,48 +71,252 @@ function cloneData(value) {
     return value == null ? value : JSON.parse(JSON.stringify(value));
 }
 
-async function apiFetch(path, options = {}) {
-    const { body, headers = {}, ...rest } = options;
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => {
-        controller.abort();
-    }, API_TIMEOUT_MS);
+function getFirebaseConfig() {
+    return window.ILAMATH_FIREBASE_CONFIG || {};
+}
 
-    let response;
+function hasFirebaseConfig() {
+    const config = getFirebaseConfig();
+    return Boolean(config.apiKey && config.authDomain && config.projectId && config.appId);
+}
 
-    try {
-        response = await fetch(getRootPath(path), {
-            credentials: "same-origin",
-            ...rest,
-            headers: {
-                ...(body ? { "Content-Type": "application/json" } : {}),
-                ...headers,
-            },
-            body: body ? JSON.stringify(body) : undefined,
-            signal: controller.signal,
+function mapFirebaseError(error) {
+    const code = String(error?.code || "");
+
+    if (
+        code.includes("auth/invalid-credential") ||
+        code.includes("auth/wrong-password") ||
+        code.includes("auth/user-not-found") ||
+        code.includes("auth/invalid-login-credentials")
+    ) {
+        return new Error("Неверный username или пароль.");
+    }
+
+    if (code.includes("auth/email-already-in-use")) {
+        return new Error("Такой username уже занят.");
+    }
+
+    if (code.includes("auth/weak-password")) {
+        return new Error("Пароль должен быть минимум из 6 символов.");
+    }
+
+    if (code.includes("permission-denied")) {
+        return new Error("Firestore rules не дают доступ. Проверь настройки Firebase.");
+    }
+
+    if (code.includes("unavailable")) {
+        return new Error("Firebase временно недоступен. Попробуй позже.");
+    }
+
+    if (code.includes("too-many-requests")) {
+        return new Error("Слишком много попыток. Попробуй чуть позже.");
+    }
+
+    return new Error(error?.message || "Firebase request failed.");
+}
+
+function getFirebaseServices() {
+    if (FIREBASE_STATE.app && FIREBASE_STATE.auth && FIREBASE_STATE.db) {
+        return FIREBASE_STATE;
+    }
+
+    if (!hasFirebaseConfig()) {
+        throw new Error("Firebase не настроен. Заполни firebase-config.js и включи Auth + Firestore.");
+    }
+
+    const config = getFirebaseConfig();
+    FIREBASE_STATE.app = getApps().length ? getApp() : initializeApp(config);
+    FIREBASE_STATE.auth = getAuth(FIREBASE_STATE.app);
+    FIREBASE_STATE.db = getFirestore(FIREBASE_STATE.app);
+
+    return FIREBASE_STATE;
+}
+
+function usernameToAuthEmail(username) {
+    const normalized = slugify(username);
+
+    if (!normalized) {
+        throw new Error("Username обязателен.");
+    }
+
+    return `${normalized}@${FIREBASE_USERNAME_DOMAIN}`;
+}
+
+function buildAccountRecord(username, displayName, uid, createdAt) {
+    return {
+        username: slugify(username),
+        displayName: String(displayName || username || "user").trim() || "user",
+        uid: String(uid || ""),
+        createdAt: createdAt || new Date().toISOString(),
+    };
+}
+
+function createPublicAccountFromProfile(profile, user = null) {
+    const normalized = normalizeProfile(profile || {});
+    return {
+        username: normalized.username,
+        displayName: normalized.displayName,
+        uid: normalized.uid,
+        createdAt: normalized.createdAt || (user?.metadata?.creationTime ? new Date(user.metadata.creationTime).toISOString() : new Date().toISOString()),
+    };
+}
+
+function buildInitialAccountFromUser(user) {
+    const username = slugify(
+        user?.displayName ||
+        user?.email?.split("@")[0] ||
+        user?.uid?.slice(0, 12) ||
+        "user"
+    );
+
+    return buildAccountRecord(
+        username,
+        user?.displayName || username,
+        user?.uid || "",
+        user?.metadata?.creationTime ? new Date(user.metadata.creationTime).toISOString() : new Date().toISOString()
+    );
+}
+
+function limitStringArray(value) {
+    return Array.isArray(value) ? value.slice(0, 20) : [];
+}
+
+function prepareProfileForSave(input, existingProfile, account, authUid = "") {
+    const nextUsername = slugify(input?.username || existingProfile?.username || account.username);
+    if (!nextUsername) {
+        throw new Error("Username не может быть пустым.");
+    }
+
+    const displayName = String(
+        input?.displayName ||
+        existingProfile?.displayName ||
+        account.displayName ||
+        nextUsername
+    ).trim() || nextUsername;
+
+    const draft = normalizeProfile(
+        mergeDeep(existingProfile || createDefaultProfile(account), input || {})
+    );
+
+    draft.username = nextUsername;
+    draft.displayName = displayName;
+    draft.uid = existingProfile?.uid || account.uid;
+    draft.createdAt = existingProfile?.createdAt || account.createdAt;
+    draft.lastSavedAt = new Date().toISOString();
+    draft.views = existingProfile?.views || 0;
+    draft.weeklyViews = Array.isArray(existingProfile?.weeklyViews)
+        ? existingProfile.weeklyViews.slice(0, 7)
+        : [0, 0, 0, 0, 0, 0, 0];
+    draft.aliases = limitStringArray(draft.aliases);
+    draft.tags = limitStringArray(draft.tags);
+    draft.badges = limitStringArray(draft.badges);
+    draft.links = Array.isArray(draft.links) ? draft.links.slice(0, 20) : [];
+    draft.authUid = authUid;
+
+    return draft;
+}
+
+async function waitForAuthReady() {
+    const { auth } = getFirebaseServices();
+
+    if (!FIREBASE_STATE.authReadyPromise) {
+        FIREBASE_STATE.authReadyPromise = new Promise((resolve) => {
+            const unsubscribe = onAuthStateChanged(auth, (user) => {
+                unsubscribe();
+                resolve(user);
+            });
         });
-    } catch (error) {
-        window.clearTimeout(timeout);
+    }
 
-        if (error?.name === "AbortError") {
-            throw new Error("Сервер профилей не отвечает. Проверь Redis и redeploy в Vercel.");
+    return FIREBASE_STATE.authReadyPromise;
+}
+
+async function getLatestProfilesFromFirebase(limitCount = 6) {
+    const { db } = getFirebaseServices();
+    const snapshot = await getDocs(
+        query(collection(db, "profiles"), orderBy("createdAt", "desc"), limit(limitCount))
+    );
+
+    return snapshot.docs.map((entry) => normalizeProfile(entry.data()));
+}
+
+async function getProfilesCountFromFirebase() {
+    const { db } = getFirebaseServices();
+    const snapshot = await getCountFromServer(collection(db, "profiles"));
+    return Number(snapshot.data().count || 0);
+}
+
+async function getProfileDocByAuthUid(authUid) {
+    const { db } = getFirebaseServices();
+    const snapshot = await getDoc(doc(db, "profiles", authUid));
+    return snapshot.exists() ? normalizeProfile(snapshot.data()) : null;
+}
+
+async function claimProfileForUser(user, preferredUsername = "", preferredDisplayName = "") {
+    const { db } = getFirebaseServices();
+    const baseAccount = buildInitialAccountFromUser(user);
+    const baseUsername = slugify(preferredUsername || baseAccount.username || "user");
+    const displayName = String(preferredDisplayName || baseAccount.displayName || baseUsername).trim() || baseUsername;
+    const profileRef = doc(db, "profiles", user.uid);
+    const statsRef = doc(db, "meta", "stats");
+
+    const profile = await runTransaction(db, async (transaction) => {
+        const existingProfile = await transaction.get(profileRef);
+        if (existingProfile.exists()) {
+            return normalizeProfile(existingProfile.data());
         }
 
-        throw error;
+        let candidate = baseUsername;
+        let suffix = 0;
+
+        while (true) {
+            const usernameRef = doc(db, "usernames", candidate);
+            const usernameSnap = await transaction.get(usernameRef);
+
+            if (!usernameSnap.exists() || usernameSnap.data()?.uid === user.uid) {
+                const statsSnap = await transaction.get(statsRef);
+                const nextUid = String((Number(statsSnap.data()?.lastSequentialUid) || 0) + 1);
+                const account = buildAccountRecord(candidate, displayName, nextUid, baseAccount.createdAt);
+                const createdProfile = createDefaultProfile(account, {
+                    displayName,
+                    tags: ["fresh"],
+                    badges: ["new"],
+                    authUid: user.uid,
+                });
+
+                transaction.set(profileRef, createdProfile);
+                transaction.set(usernameRef, {
+                    uid: user.uid,
+                    createdAt: account.createdAt,
+                    updatedAt: new Date().toISOString(),
+                });
+                transaction.set(statsRef, {
+                    lastSequentialUid: Number(nextUid),
+                }, { merge: true });
+                return createdProfile;
+            }
+
+            suffix += 1;
+            candidate = `${baseUsername}${suffix}`;
+        }
+    });
+
+    await updateAuthProfile(user, { displayName: profile.displayName }).catch(() => {});
+    return normalizeProfile(profile);
+}
+
+async function ensureProfileForCurrentUser() {
+    const user = FIREBASE_STATE.auth?.currentUser || await waitForAuthReady();
+    if (!user) {
+        throw new Error("Сначала войди в аккаунт.");
     }
 
-    window.clearTimeout(timeout);
-
-    const contentType = response.headers.get("content-type") || "";
-    const payload = contentType.includes("application/json")
-        ? await response.json().catch(() => ({}))
-        : {};
-
-    if (!response.ok) {
-        throw new Error(payload.error || "Request failed.");
+    const existing = await getProfileDocByAuthUid(user.uid);
+    if (existing) {
+        return existing;
     }
 
-    return payload;
+    return claimProfileForUser(user);
 }
 
 async function loadBootstrapState(force = false) {
@@ -89,13 +324,18 @@ async function loadBootstrapState(force = false) {
         return cloneData(APP_STATE);
     }
 
-    const payload = await apiFetch("api/bootstrap");
+    const user = await waitForAuthReady();
+    const [profilesCount, latestProfiles, currentProfile] = await Promise.all([
+        getProfilesCountFromFirebase(),
+        getLatestProfilesFromFirebase(),
+        user ? ensureProfileForCurrentUser() : Promise.resolve(null),
+    ]);
+
     APP_STATE.bootstrapError = "";
-    APP_STATE.session = payload.session || null;
-    APP_STATE.profilesCount = Number(payload.profilesCount || 0);
-    APP_STATE.latestProfiles = Array.isArray(payload.latestProfiles)
-        ? payload.latestProfiles.map((profile) => normalizeProfile(profile))
-        : [];
+    APP_STATE.session = currentProfile ? createPublicAccountFromProfile(currentProfile, user) : null;
+    APP_STATE.currentProfile = currentProfile ? normalizeProfile(currentProfile) : null;
+    APP_STATE.profilesCount = profilesCount;
+    APP_STATE.latestProfiles = latestProfiles;
     APP_STATE.bootstrapLoaded = true;
 
     return cloneData(APP_STATE);
@@ -116,32 +356,74 @@ function setLatestProfilesState(profiles) {
 }
 
 async function fetchCurrentProfileFromApi() {
-    const payload = await apiFetch("api/me/profile");
-    setSessionState(payload.account || null);
-    setCurrentProfileState(payload.profile || null);
+    const profile = await ensureProfileForCurrentUser();
+    const user = FIREBASE_STATE.auth?.currentUser || null;
+    setSessionState(createPublicAccountFromProfile(profile, user));
+    setCurrentProfileState(profile);
     return cloneData(APP_STATE.currentProfile);
 }
 
 async function saveCurrentProfileToApi(nextProfile) {
-    const payload = await apiFetch("api/me/profile", {
-        method: "PUT",
-        body: {
-            profile: nextProfile,
-        },
+    const { db, auth } = getFirebaseServices();
+    const user = auth.currentUser || await waitForAuthReady();
+    if (!user) {
+        throw new Error("Сначала войди в аккаунт.");
+    }
+
+    const existingProfile = await ensureProfileForCurrentUser();
+    const account = createPublicAccountFromProfile(existingProfile, user);
+    const prepared = prepareProfileForSave(nextProfile, existingProfile, account, user.uid);
+    const previousUsername = existingProfile.username;
+    const nextUsername = prepared.username;
+
+    await runTransaction(db, async (transaction) => {
+        const profileRef = doc(db, "profiles", user.uid);
+        const nextUsernameRef = doc(db, "usernames", nextUsername);
+        const nextUsernameSnap = await transaction.get(nextUsernameRef);
+
+        if (nextUsernameSnap.exists() && nextUsernameSnap.data()?.uid !== user.uid) {
+            throw new Error("Такой username уже занят.");
+        }
+
+        transaction.set(profileRef, prepared);
+        transaction.set(nextUsernameRef, {
+            uid: user.uid,
+            createdAt: prepared.createdAt,
+            updatedAt: new Date().toISOString(),
+        });
+
+        if (previousUsername && previousUsername !== nextUsername) {
+            transaction.delete(doc(db, "usernames", previousUsername));
+        }
     });
 
-    setSessionState(payload.account || null);
-    setCurrentProfileState(payload.profile || null);
+    await updateAuthProfile(user, { displayName: prepared.displayName }).catch(() => {});
+    setSessionState(createPublicAccountFromProfile(prepared, user));
+    setCurrentProfileState(prepared);
+    APP_STATE.bootstrapLoaded = false;
     return cloneData(APP_STATE.currentProfile);
 }
 
 async function resetCurrentProfileToApi() {
-    const payload = await apiFetch("api/me/profile/reset", {
-        method: "POST",
+    const { db, auth } = getFirebaseServices();
+    const user = auth.currentUser || await waitForAuthReady();
+    if (!user) {
+        throw new Error("Сначала войди в аккаунт.");
+    }
+
+    const existing = await ensureProfileForCurrentUser();
+    const account = createPublicAccountFromProfile(existing, user);
+    const fallback = createDefaultProfile(account, {
+        avatarUrl: existing.avatarUrl,
+        displayName: existing.displayName,
+        username: existing.username,
+        authUid: user.uid,
     });
 
-    setSessionState(payload.account || null);
-    setCurrentProfileState(payload.profile || null);
+    await setDoc(doc(db, "profiles", user.uid), fallback);
+    setSessionState(createPublicAccountFromProfile(fallback, user));
+    setCurrentProfileState(fallback);
+    APP_STATE.bootstrapLoaded = false;
     return cloneData(APP_STATE.currentProfile);
 }
 
@@ -151,11 +433,47 @@ async function fetchProfileWithView(username) {
         throw new Error("Укажи username.");
     }
 
-    const payload = await apiFetch(`api/profile/${encodeURIComponent(normalizedName)}/view`, {
-        method: "POST",
-    });
+    const { db, auth } = getFirebaseServices();
+    const usernameRef = doc(db, "usernames", normalizedName);
+    const usernameSnap = await getDoc(usernameRef);
 
-    return normalizeProfile(payload.profile || {});
+    if (!usernameSnap.exists()) {
+        throw new Error("Профиль не найден.");
+    }
+
+    const authUid = String(usernameSnap.data()?.uid || "");
+    const profileRef = doc(db, "profiles", authUid);
+    const profileSnap = await getDoc(profileRef);
+
+    if (!profileSnap.exists()) {
+        throw new Error("Профиль не найден.");
+    }
+
+    const currentUser = auth.currentUser || null;
+    const tracker = getViewTracker();
+    const trackerKey = normalizedName;
+    const lastViewAt = Number(tracker[trackerKey] || 0);
+    const now = Date.now();
+
+    if (currentUser?.uid !== authUid && (!lastViewAt || now - lastViewAt >= VIEW_COOLDOWN_MS)) {
+        const updatedProfile = await runTransaction(db, async (transaction) => {
+            const currentSnap = await transaction.get(profileRef);
+            const currentProfile = normalizeProfile(currentSnap.data() || {});
+            const dayIndex = (new Date(now).getDay() + 6) % 7;
+
+            currentProfile.views += 1;
+            currentProfile.weeklyViews[dayIndex] = (currentProfile.weeklyViews[dayIndex] || 0) + 1;
+
+            transaction.set(profileRef, currentProfile);
+            return currentProfile;
+        });
+
+        tracker[trackerKey] = now;
+        saveViewTracker(tracker);
+        return normalizeProfile(updatedProfile);
+    }
+
+    return normalizeProfile(profileSnap.data());
 }
 
 function slugify(value) {
@@ -1332,6 +1650,85 @@ async function incrementProfileView(username) {
     return fetchProfileWithView(username);
 }
 
+async function registerWithFirebaseAuth(username, displayName, password) {
+    const { auth } = getFirebaseServices();
+    const normalizedUsername = slugify(username);
+    const normalizedDisplayName = String(displayName || normalizedUsername).trim() || normalizedUsername;
+
+    if (!normalizedUsername) {
+        throw new Error("Username обязателен.");
+    }
+
+    if (String(password || "").length < 6) {
+        throw new Error("Пароль должен быть минимум из 6 символов.");
+    }
+
+    try {
+        const credential = await createUserWithEmailAndPassword(
+            auth,
+            usernameToAuthEmail(normalizedUsername),
+            password
+        );
+
+        const user = credential.user;
+
+        try {
+            await claimProfileForUser(user, normalizedUsername, normalizedDisplayName);
+            await updateAuthProfile(user, { displayName: normalizedDisplayName }).catch(() => {});
+        } catch (error) {
+            await deleteUser(user).catch(() => {});
+            throw error;
+        }
+
+        await loadBootstrapState(true);
+
+        return {
+            account: getCurrentAccount(),
+            latestProfiles: APP_STATE.latestProfiles,
+            profilesCount: APP_STATE.profilesCount,
+        };
+    } catch (error) {
+        throw mapFirebaseError(error);
+    }
+}
+
+async function loginWithFirebaseAuth(username, password) {
+    const { auth } = getFirebaseServices();
+
+    try {
+        await signInWithEmailAndPassword(
+            auth,
+            usernameToAuthEmail(username),
+            password
+        );
+
+        await loadBootstrapState(true);
+
+        return {
+            account: getCurrentAccount(),
+            latestProfiles: APP_STATE.latestProfiles,
+            profilesCount: APP_STATE.profilesCount,
+        };
+    } catch (error) {
+        throw mapFirebaseError(error);
+    }
+}
+
+async function logoutFromFirebaseAuth() {
+    const { auth } = getFirebaseServices();
+
+    try {
+        await signOut(auth);
+    } catch (error) {
+        throw mapFirebaseError(error);
+    } finally {
+        clearSession();
+        APP_STATE.latestProfiles = [];
+        APP_STATE.profilesCount = 0;
+        APP_STATE.bootstrapLoaded = false;
+    }
+}
+
 function applyThemeVariables(element, profile) {
     const theme = profile.theme;
 
@@ -2205,11 +2602,9 @@ function initMainPage() {
 
             document.getElementById("mainHeaderLogout")?.addEventListener("click", async () => {
                 try {
-                    await apiFetch("api/auth/logout", {
-                        method: "POST",
-                    });
+                    await logoutFromFirebaseAuth();
                 } catch (error) {
-                    // Ignore logout API errors and clear client state anyway.
+                    // Ignore logout errors and clear client state anyway.
                 }
 
                 clearSession();
@@ -2306,14 +2701,7 @@ function initMainPage() {
         }
 
         try {
-            const payload = await apiFetch("api/auth/register", {
-                method: "POST",
-                body: {
-                    username,
-                    displayName,
-                    password,
-                },
-            });
+            const payload = await registerWithFirebaseAuth(username, displayName, password);
 
             setSessionState(payload.account || null);
             setLatestProfilesState(payload.latestProfiles || []);
@@ -2345,13 +2733,7 @@ function initMainPage() {
         const password = String(formData.get("login_password") || "");
 
         try {
-            const payload = await apiFetch("api/auth/login", {
-                method: "POST",
-                body: {
-                    username,
-                    password,
-                },
-            });
+            const payload = await loginWithFirebaseAuth(username, password);
 
             setSessionState(payload.account || null);
             setLatestProfilesState(payload.latestProfiles || []);
@@ -3052,11 +3434,9 @@ async function initSettingsPage() {
 
     logoutBtn?.addEventListener("click", async () => {
         try {
-            await apiFetch("api/auth/logout", {
-                method: "POST",
-            });
+            await logoutFromFirebaseAuth();
         } catch (error) {
-            // Ignore logout API errors and still redirect to the public landing.
+            // Ignore logout errors and still redirect to the public landing.
         }
 
         clearSession();
@@ -3099,7 +3479,7 @@ async function bootstrap() {
     try {
         await loadBootstrapState();
     } catch (error) {
-        APP_STATE.bootstrapError = error.message || "Backend is not reachable.";
+        APP_STATE.bootstrapError = error.message || "Firebase is not reachable.";
         console.error(error);
     }
 

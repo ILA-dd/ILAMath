@@ -1,39 +1,23 @@
 # ILAMath Profiles
 
-This repo is ready for a static frontend + Vercel Functions deployment.
+This repo is ready for a static Vercel deployment with Firebase Auth + Firestore.
 
-## What changed for Vercel
+## Stack
 
 - Public pages stay static: `/`, `/main`, `/settings`, `/profile`, `/markdown`
-- Backend now has Vercel-compatible functions in [`api/`](./api)
-- Persistent storage on Vercel uses Redis via Marketplace env vars:
-  - `UPSTASH_REDIS_REST_URL`
-  - `UPSTASH_REDIS_REST_TOKEN`
-- The app also accepts legacy Vercel KV env names:
-  - `KV_REST_API_URL`
-  - `KV_REST_API_TOKEN`
+- Auth uses Firebase Authentication
+- Profiles and public pages use Cloud Firestore
+- Frontend Firebase config is stored in [`firebase-config.js`](./firebase-config.js)
 
-Without Redis, Vercel has nowhere persistent to save users, profiles, sessions, and views.
+## Firebase setup
 
-## Deploy to Vercel
-
-1. Push this repository to GitHub.
-2. Import the repo into Vercel.
-3. In Vercel, add a Redis integration from the Marketplace.
-4. Make sure Vercel injects `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN`.
-5. Deploy.
-
-The app seeds one default account on the first boot:
-
-- `username`: `ila`
-- `password`: `alesha7720`
+Follow the full guide in [`FIREBASE_SETUP.md`](./FIREBASE_SETUP.md).
 
 ## Local development
 
-For local development without Vercel, the existing Node server still works:
+For local development with Firebase:
 
-```bash
-npm start
-```
+1. Fill [`firebase-config.js`](./firebase-config.js)
+2. Open the site locally or deploy it to Vercel
 
-Local mode stores data in `data/store.json`. That file is ignored by git on purpose.
+The old Node server and `api/` folder can stay in the repo, but the frontend no longer depends on them for auth or profile storage.

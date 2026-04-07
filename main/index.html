@@ -11,7 +11,8 @@
         rel="stylesheet"
     >
     <link rel="stylesheet" href="../styles.css">
-    <script defer src="../script.js"></script>
+    <script src="../firebase-config.js"></script>
+    <script type="module" src="../script.js"></script>
 </head>
 <body data-page="main" data-root="../">
     <div class="ambient ambient--left" aria-hidden="true"></div>
@@ -24,7 +25,7 @@
             <nav class="site-nav" aria-label="Навигация">
                 <a href="./">main</a>
                 <a href="../settings/">settings</a>
-                <a href="../profile/?u=ila">demo profile</a>
+                <a href="../profile/?u=ila">profile example</a>
             </nav>
             <div class="site-header__right">
                 <a class="header-state header-state--action" id="headerSessionState" href="#authPanel" aria-label="Open register or login panel">register / login</a>
@@ -97,7 +98,7 @@
                         </p>
                         <div class="chip-row">
                             <span class="chip">profiles <strong id="mainProfileCount">0</strong></span>
-                            <span class="chip">storage local</span>
+                            <span class="chip">firebase cloud</span>
                             <span class="chip">fakecrime-inspired</span>
                         </div>
                     </div>
