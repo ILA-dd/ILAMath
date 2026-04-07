@@ -2224,6 +2224,18 @@ function initMainPage() {
         });
     });
 
+    authModeRegister?.addEventListener("change", () => {
+        if (authModeRegister.checked) {
+            setAuthMode("register");
+        }
+    });
+
+    authModeLogin?.addEventListener("change", () => {
+        if (authModeLogin.checked) {
+            setAuthMode("login");
+        }
+    });
+
     authPanelClose?.addEventListener("click", (event) => {
         event.preventDefault();
         closeAuthPanel();
