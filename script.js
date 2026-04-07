@@ -2204,6 +2204,7 @@ function initMainPage() {
 
     headerSessionState?.addEventListener("click", (event) => {
         event.stopPropagation();
+        event.preventDefault();
 
         if (current) {
             return;
@@ -2218,7 +2219,8 @@ function initMainPage() {
         });
     });
 
-    authPanelClose?.addEventListener("click", () => {
+    authPanelClose?.addEventListener("click", (event) => {
+        event.preventDefault();
         closeAuthPanel();
     });
 

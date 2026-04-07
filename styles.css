@@ -196,6 +196,10 @@ img {
     gap: 0.95rem;
 }
 
+.main-auth-panel:target {
+    display: grid !important;
+}
+
 .main-auth-panel__head {
     display: flex;
     align-items: flex-start;

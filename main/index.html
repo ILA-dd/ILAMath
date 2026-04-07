@@ -27,7 +27,7 @@
                 <a href="../profile/?u=ila">demo profile</a>
             </nav>
             <div class="site-header__right">
-                <button class="header-state header-state--action" id="headerSessionState" type="button" aria-label="Open register or login panel">register / login</button>
+                <a class="header-state header-state--action" id="headerSessionState" href="#authPanel" aria-label="Open register or login panel">register / login</a>
                 <div id="mainHeaderAuth" class="main-header-auth"></div>
             </div>
         </header>
@@ -38,10 +38,10 @@
                     <p class="eyebrow" id="authPanelEyebrow">register</p>
                     <h2 id="authPanelTitle">Создать аккаунт</h2>
                 </div>
-                <button id="authPanelClose" class="main-auth-panel__close" type="button" aria-label="Close auth panel">
+                <a id="authPanelClose" class="main-auth-panel__close" href="#" aria-label="Close auth panel">
                     <span></span>
                     <span></span>
-                </button>
+                </a>
             </div>
 
             <div class="main-auth-tabs" role="tablist" aria-label="Auth mode">
