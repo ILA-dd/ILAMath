@@ -1131,7 +1131,8 @@ function hydrateHeader() {
 
     const current = getCurrentAccount();
     if (!current) {
-        headerState.textContent = "guest mode";
+        const page = document.body?.dataset?.page || "";
+        headerState.textContent = page === "main" ? "register / login" : "guest mode";
         return;
     }
 
