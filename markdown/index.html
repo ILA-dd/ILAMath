@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILAMath Profiles / markdown</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Mono:wght@400;700&family=Syne:wght@500;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../styles.css">
+    <script defer src="../script.js"></script>
+</head>
+<body data-page="markdown" data-root="../">
+    <div class="ambient ambient--left" aria-hidden="true"></div>
+    <div class="ambient ambient--right" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="../">ILAMath Profiles</a>
+            <nav class="site-nav" aria-label="Навигация">
+                <a href="../main/">main</a>
+                <a href="../settings/">settings</a>
+                <a href="./">markdown</a>
+            </nav>
+            <div class="header-state" id="headerSessionState">guest mode</div>
+        </header>
+
+        <main class="stack-xl">
+            <section class="panel markdown-guide">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow">guide</p>
+                        <h1>Markdown</h1>
+                    </div>
+                    <div class="button-row">
+                        <a class="button" href="../settings/">Back to settings</a>
+                        <a class="button button--primary" href="../profile/?u=ila">Open demo profile</a>
+                    </div>
+                </div>
+
+                <p class="section-copy markdown-guide__lead">
+                    Ниже собраны теги, которые можно вставлять в `Description`. Preview справа использует тот же
+                    рендер, что и публичный профиль.
+                </p>
+
+                <div class="markdown-guide__callout">
+                    <strong>Быстрый совет</strong>
+                    <p>Теги выравнивания вроде `[center]...[/center]` и `[right]...[/right]` удобнее использовать для целой строки или отдельного блока.</p>
+                </div>
+
+                <div class="markdown-guide__headings">
+                    <strong>Tags</strong>
+                    <strong>Preview</strong>
+                </div>
+
+                <div class="markdown-guide__rows">
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[h]Headline[/h]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[h]Headline[/h]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[b]Bold[/b]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[b]Bold[/b]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[em]Italic[/em]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[em]Italic[/em]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[u]Underline[/u]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[u]Underline[/u]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[del]Strike-through[/del]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[del]Strike-through[/del]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[quote]Quote[/quote]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[quote]Quote[/quote]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[code]const profile = true;[/code]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[code]const profile = true;[/code]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[hr]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[hr]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[hr-theme]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[hr-theme]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">Line[br]Break</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="Line[br]Break"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[theme]Theme[/theme]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[theme]Theme[/theme]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[color=F97316]Color[/color]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[color=F97316]Color[/color]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[highlight]Highlight[/highlight]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[highlight]Highlight[/highlight]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[spoiler]Spoiler[/spoiler]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[spoiler]Spoiler[/spoiler]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[list][item]List item[/item][item]Second item[/item][/list]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[list][item]List item[/item][item]Second item[/item][/list]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[left]Left[/left]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[left]Left[/left]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[center]Center[/center]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[center]Center[/center]"></div>
+                    </article>
+
+                    <article class="markdown-guide__row">
+                        <pre class="markdown-guide__code">[right]Right[/right]</pre>
+                        <div class="markdown-guide__preview markdown-rendered" data-markdown-preview="[right]Right[/right]"></div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

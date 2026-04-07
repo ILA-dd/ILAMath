@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/api/profile/:username/view",
+      "destination": "/api/profile/view?username=:username"
+    },
+    {
+      "source": "/api/profile/:username",
+      "destination": "/api/profile?username=:username"
+    }
+  ]
+}

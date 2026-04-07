@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILAMath Profiles</title>
+    <meta
+        name="description"
+        content="ILAMath Profiles: сервис стильных публичных профилей с кастомизацией, треками, медиа и своей атмосферой."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Mono:wght@400;700&family=Syne:wght@500;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body data-page="home" data-root="./">
+    <div class="ambient ambient--left" aria-hidden="true"></div>
+    <div class="ambient ambient--right" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="./">ILAMath Profiles</a>
+            <nav class="site-nav" aria-label="Навигация">
+                <a href="./main/">main</a>
+                <a href="./settings/">settings</a>
+                <a href="./profile/?u=ila">profile</a>
+            </nav>
+            <div class="header-state" id="headerSessionState">guest mode</div>
+        </header>
+
+        <main class="stack-xl">
+            <section class="panel hero-panel">
+                <div class="hero-grid">
+                    <div class="stack-lg">
+                        <div>
+                            <p class="eyebrow">profile platform</p>
+                            <h1 class="hero-title">Собери профиль, который выглядит как твой.</h1>
+                        </div>
+                        <p class="hero-copy">
+                            ILAMath Profiles помогает быстро собрать публичную страницу с характером:
+                            свой стиль, свои цвета, свои теги, трек, фон и ссылка, которую не стыдно кидать другим.
+                        </p>
+                        <div class="button-row">
+                            <a class="button button--primary" href="./main/">Начать</a>
+                            <a class="button button--ghost" href="./profile/?u=ila">Смотреть пример</a>
+                        </div>
+                    </div>
+
+                    <div class="hero-summary">
+                        <div class="metric-card">
+                            <span>profiles live</span>
+                            <strong id="homeProfileCount">0</strong>
+                        </div>
+                        <div class="metric-card">
+                            <span>custom style</span>
+                            <strong>theme first</strong>
+                        </div>
+                        <div class="metric-card">
+                            <span>share ready</span>
+                            <strong>one link</strong>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="route-grid">
+                <article class="panel route-card">
+                    <p class="eyebrow">01 / start</p>
+                    <h2>Зайди и сразу начни собирать свою страницу</h2>
+                    <p>
+                        Без длинного онбординга и лишних шагов. Зарегистрировался, вошёл и уже можешь собрать
+                        свой профиль под себя.
+                    </p>
+                    <a class="button button--ghost" href="./main/">Открыть start</a>
+                </article>
+
+                <article class="panel route-card">
+                    <p class="eyebrow">02 / customize</p>
+                    <h2>Настрой внешний вид так, чтобы он цеплял</h2>
+                    <p>
+                        Цвета, баннер, фон, описание, теги, ссылки, reveal screen и трек. Всё в одном месте и
+                        сразу с live preview.
+                    </p>
+                    <a class="button button--ghost" href="./settings/">Открыть editor</a>
+                </article>
+
+                <article class="panel route-card">
+                    <p class="eyebrow">03 / share</p>
+                    <h2>Открой и делись одной ссылкой</h2>
+                    <p>
+                        Публичная страница уже готова для просмотра: с атмосферой, просмотрами, музыкой и
+                        всем, что ты настроил внутри.
+                    </p>
+                    <a class="button button--ghost" href="./profile/?u=ila">Открыть demo</a>
+                </article>
+            </section>
+
+            <section class="panel">
+                <div class="section-head">
+                    <p class="eyebrow">why it hits</p>
+                    <h2>Почему этот формат работает</h2>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <strong>Своя атмосфера</strong>
+                        <p>Профиль ощущается не как анкета, а как персональная страница со своим тоном и вайбом.</p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Гибкая кастомизация</strong>
+                        <p>Можно собрать свой образ через медиа, цвета, текст, эффекты, теги, ссылки и музыку.</p>
+                    </article>
+                    <article class="feature-card">
+                        <strong>Одна ссылка на всё</strong>
+                        <p>Открываешь профиль, кидаешь ссылку и человек сразу видит тебя, а не просто набор полей.</p>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

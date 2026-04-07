@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILAMath Profiles / settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Mono:wght@400;700&family=Syne:wght@500;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../styles.css">
+    <script defer src="../script.js"></script>
+</head>
+<body data-page="settings" data-root="../">
+    <div class="ambient ambient--left" aria-hidden="true"></div>
+    <div class="ambient ambient--right" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="../">ILAMath Profiles</a>
+            <nav class="site-nav" aria-label="Навигация">
+                <a href="../main/">main</a>
+                <a href="./">settings</a>
+                <a href="../profile/?u=ila">demo profile</a>
+            </nav>
+            <div class="header-state" id="headerSessionState">guest mode</div>
+        </header>
+
+        <main class="stack-xl">
+            <section id="settingsGate" class="panel settings-panel hidden">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow">auth required</p>
+                        <h1>Сначала нужно войти через `/main`.</h1>
+                    </div>
+                </div>
+                <p class="section-copy">
+                    Эта страница редактирует профиль конкретного пользователя. Если сессии нет, ей просто нечего
+                    настраивать.
+                </p>
+                <div class="button-row">
+                    <a class="button button--primary" href="../main/">Go to main</a>
+                    <a class="button button--ghost" href="../">Back home</a>
+                </div>
+            </section>
+
+            <section id="settingsApp" class="settings-layout hidden">
+                <aside class="panel sidebar-card">
+                    <img id="sidebarAvatar" class="sidebar-card__avatar" src="" alt="avatar">
+                    <div class="stack-lg">
+                        <div>
+                            <p class="eyebrow">account</p>
+                            <div class="muted" id="sidebarHandle">/user</div>
+                            <h1 class="profile-heading" id="sidebarName">Name</h1>
+                            <p class="muted" id="sidebarStatus">Status line</p>
+                        </div>
+
+                        <div class="profile-badge">
+                            <span>public url</span>
+                            <strong id="sidebarPublicUrl">loading</strong>
+                        </div>
+
+                        <div class="button-row">
+                            <a id="openProfileBtn" class="button button--success" href="../profile/?u=ila">Open profile</a>
+                            <button id="copyProfileBtn" class="button button--ghost" type="button">Copy link</button>
+                            <button id="logoutBtn" class="button button--danger" type="button">Logout</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="settings-content">
+                    <div id="settingsMessage" class="message message--info">Измени поля ниже, посмотри live preview и затем нажми Save all.</div>
+
+                    <section class="panel settings-tabs-shell">
+                        <div class="settings-tabs__row">
+                            <div class="settings-tabs" role="tablist" aria-label="Settings sections">
+                                <button class="settings-tab is-active" id="settings-tab-dashboard" type="button" role="tab" aria-selected="true" aria-controls="settings-panel-dashboard" data-settings-tab-target="dashboard">Dashboard</button>
+                                <button class="settings-tab" id="settings-tab-profile" type="button" role="tab" aria-selected="false" aria-controls="settings-panel-profile" data-settings-tab-target="profile">Profile</button>
+                                <button class="settings-tab" id="settings-tab-options" type="button" role="tab" aria-selected="false" aria-controls="settings-panel-options" data-settings-tab-target="options">Options</button>
+                                <button class="settings-tab" id="settings-tab-appearance" type="button" role="tab" aria-selected="false" aria-controls="settings-panel-appearance" data-settings-tab-target="appearance">Appearance</button>
+                                <button class="settings-tab" id="settings-tab-extras" type="button" role="tab" aria-selected="false" aria-controls="settings-panel-extras" data-settings-tab-target="extras">Extras</button>
+                                <button class="settings-tab" id="settings-tab-preview" type="button" role="tab" aria-selected="false" aria-controls="settings-panel-preview" data-settings-tab-target="preview">Preview</button>
+                            </div>
+
+                            <div class="settings-tabs__actions">
+                                <button id="resetAllBtn" class="button button--danger" type="button">Reset defaults</button>
+                                <button id="saveAllBtn" class="button button--primary" type="button">Save all</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="settings-panel-dashboard" class="panel settings-panel" data-settings-tab-panel="dashboard" role="tabpanel" aria-labelledby="settings-tab-dashboard">
+                        <div class="section-head">
+                            <div>
+                                <p class="eyebrow">dashboard</p>
+                                <h2>Manage your page</h2>
+                            </div>
+                        </div>
+
+                        <div class="stat-grid">
+                            <article class="stat-box">
+                                <span>UID</span>
+                                <strong id="dashUid">0</strong>
+                            </article>
+                            <article class="stat-box">
+                                <span>Username</span>
+                                <strong id="dashUsername">user</strong>
+                            </article>
+                            <article class="stat-box">
+                                <span>Total views</span>
+                                <strong id="dashViews">0</strong>
+                            </article>
+                            <article class="stat-box">
+                                <span>Join date</span>
+                                <strong id="dashJoin">-</strong>
+                            </article>
+                        </div>
+
+                        <div class="chart-block">
+                            <div class="chart-head">
+                                <div>
+                                    <strong>Views in the last week</strong>
+                                    <p class="dashboard-note">Упрощенный график для dashboard.</p>
+                                </div>
+                                <div class="muted" id="dashLastSaved">saved now</div>
+                            </div>
+                            <div id="weeklyBars" class="bar-chart"></div>
+                        </div>
+                    </section>
+
+                    <section id="settings-panel-profile" class="panel settings-panel" data-settings-tab-panel="profile" role="tabpanel" aria-labelledby="settings-tab-profile">
+                        <div class="section-head">
+                            <div>
+                                <p class="eyebrow">profile</p>
+                                <h2>Основные данные</h2>
+                            </div>
+                        </div>
+
+                        <div class="field-grid">
+                            <label class="field">
+                                <span class="field__label">Username</span>
+                                <input id="profileUsername" type="text" maxlength="25">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Display name</span>
+                                <input id="profileDisplayName" type="text" maxlength="25">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Aliases</span>
+                                <input id="profileAliases" type="text" placeholder="ila-dd, ilamath">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Location</span>
+                                <input id="profileLocation" type="text" maxlength="50">
+                            </label>
+                            <label class="field field--full">
+                                <span class="field__label">Status line</span>
+                                <input id="profileStatusLine" type="text" maxlength="120">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Avatar URL</span>
+                                <input id="profileAvatarUrl" type="text" placeholder="https://...">
+                                <span class="field__hint">Можно оставить ссылку, но для аватарки ниже доступна загрузка файла.</span>
+                            </label>
+                            <div class="field">
+                                <label class="field__label" for="profileAvatarFile">Avatar file</label>
+                                <input id="profileAvatarFile" type="file" accept="image/*">
+                                <div id="profileAvatarPreview" class="upload-preview" hidden></div>
+                                <span class="field__hint">Подойдут PNG, JPG, GIF, WEBP и другие изображения.</span>
+                            </div>
+                            <label class="field">
+                                <span class="field__label">Banner URL</span>
+                                <input id="profileBannerUrl" type="text" placeholder="https://... или YouTube URL">
+                                <span class="field__hint">Можно вставить картинку, прямую ссылку на видео или ссылку на YouTube.</span>
+                            </label>
+                            <div class="field">
+                                <label class="field__label" for="profileBannerFile">Banner file</label>
+                                <input id="profileBannerFile" type="file" accept="image/*,video/*">
+                                <div id="profileBannerPreview" class="upload-preview" hidden></div>
+                                <span class="field__hint">Баннер поддерживает и изображения, и видео.</span>
+                            </div>
+                            <label class="field field--full">
+                                <span class="field__label">Background URL</span>
+                                <input id="profileBackgroundUrl" type="text" placeholder="https://... или YouTube URL">
+                                <span class="field__hint">Фон можно задать картинкой, видеофайлом или ссылкой на YouTube.</span>
+                            </label>
+                            <div class="field field--full">
+                                <label class="field__label" for="profileBackgroundFile">Background file</label>
+                                <input id="profileBackgroundFile" type="file" accept="image/*,video/*">
+                                <div id="profileBackgroundPreview" class="upload-preview" hidden></div>
+                                <span class="field__hint">Большие видео лучше задавать ссылкой: `localStorage` быстро заканчивается.</span>
+                            </div>
+                            <label class="field field--full">
+                                <span class="field__label-row">
+                                    <span class="field__label">Description</span>
+                                    <a class="field__link" href="../markdown/" target="_blank" rel="noreferrer">Open markdown guide</a>
+                                </span>
+                                <textarea id="profileDescription"></textarea>
+                                <span class="field__hint">Поддерживаются `[h]`, `[b]`, `[em]`, `[quote]`, `[code]`, `[theme]`, `[color]`, `[spoiler]`, `[list]` и другие теги.</span>
+                            </label>
+                            <label class="field field--full">
+                                <span class="field__label">Page title</span>
+                                <input id="profileEmbedTitle" type="text" maxlength="90">
+                                <span class="field__hint">Текст вкладки браузера на публичной странице.</span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <section id="settings-panel-options" class="panel settings-panel" data-settings-tab-panel="options" role="tabpanel" aria-labelledby="settings-tab-options">
+                        <div class="section-head">
+                            <div>
+                                <p class="eyebrow">options</p>
+                                <h2>Видимость и эффекты</h2>
+                            </div>
+                        </div>
+
+                        <div class="toggle-grid">
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>Theme badge</strong>
+                                    <span>Показывать метку темы на публичной странице.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="optionShowTheme" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>Views</strong>
+                                    <span>Показывать счетчик просмотров.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="optionShowViews" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+
+                            <label class="field">
+                                <span class="field__label">Views badge position</span>
+                                <select id="optionViewsPosition">
+                                    <option value="top-right">Right top</option>
+                                    <option value="top-left">Left top</option>
+                                    <option value="top-center">Top center</option>
+                                    <option value="bottom-right">Right bottom</option>
+                                    <option value="bottom-left">Left bottom</option>
+                                    <option value="bottom-center">Bottom center</option>
+                                </select>
+                            </label>
+
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>UID</strong>
+                                    <span>Показывать порядковый номер регистрации пользователя.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="optionShowUid" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>Discord</strong>
+                                    <span>Показывать discord-метку.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="optionShowDiscord" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>Join date</strong>
+                                    <span>Отображать дату регистрации.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="optionShowJoinDate" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>Reveal screen</strong>
+                                    <span>Добавить экран входа перед профилем.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="optionRevealScreen" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>Watermark</strong>
+                                    <span>Оставлять подпись сервиса внизу профиля.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="optionWatermark" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>Location</strong>
+                                    <span>Показывать локацию в мета-блоке.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="optionShowLocation" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <section id="settings-panel-appearance" class="panel settings-panel" data-settings-tab-panel="appearance" role="tabpanel" aria-labelledby="settings-tab-appearance">
+                        <div class="section-head">
+                            <div>
+                                <p class="eyebrow">appearance</p>
+                                <h2>Внешний вид как у кастомного bio-builder</h2>
+                            </div>
+                        </div>
+
+                        <div class="field-grid field-grid--three">
+                            <label class="field">
+                                <span class="field__label">Layout</span>
+                                <select id="themeLayout">
+                                    <option value="default">default</option>
+                                    <option value="simple">simple</option>
+                                </select>
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Alignment</span>
+                                <select id="themeAlignment">
+                                    <option value="left">left</option>
+                                    <option value="center">center</option>
+                                </select>
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Font</span>
+                                <select id="themeFont">
+                                    <option value="syne">Syne</option>
+                                    <option value="manrope">Manrope</option>
+                                    <option value="mono">Space Mono</option>
+                                </select>
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Title animation</span>
+                                <select id="themePageTitleAnimation">
+                                    <option value="none">none</option>
+                                    <option value="typing">typing</option>
+                                    <option value="marquee">marquee</option>
+                                    <option value="pulse">pulse</option>
+                                </select>
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Title speed</span>
+                                <input id="themePageTitleSpeed" type="range" min="120" max="900" step="20">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Primary color</span>
+                                <input id="themePrimary" type="color">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Secondary color</span>
+                                <input id="themeSecondary" type="color">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Text color</span>
+                                <input id="themeText" type="color">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Background color</span>
+                                <input id="themeBackground" type="color">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Card color</span>
+                                <input id="themeCardColor" type="color">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Border color</span>
+                                <input id="themeBorderColor" type="color">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Card opacity</span>
+                                <input id="themeCardOpacity" type="range" min="30" max="100">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Radius</span>
+                                <input id="themeRadius" type="range" min="8" max="48">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Blur</span>
+                                <input id="themeBlur" type="range" min="0" max="30">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Shadow opacity</span>
+                                <input id="themeShadowOpacity" type="range" min="0" max="80">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Border width</span>
+                                <input id="themeBorderWidth" type="range" min="0" max="4">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Overlay</span>
+                                <input id="themeOverlay" type="range" min="0" max="90">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Avatar radius</span>
+                                <input id="themeAvatarRadius" type="range" min="8" max="52">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Border style</span>
+                                <select id="themeBorderStyle">
+                                    <option value="solid">solid</option>
+                                    <option value="dashed">dashed</option>
+                                    <option value="double">double</option>
+                                </select>
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Reveal text</span>
+                                <input id="themeRevealText" type="text" maxlength="60">
+                            </label>
+                            <label class="toggle-card field--full">
+                                <div class="toggle-copy">
+                                    <strong>Reveal text</strong>
+                                    <span>Показывать надпись на reveal-экране. Если выключить, останется только затемнение без текста.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="themeRevealTextEnabled" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Reveal blur</span>
+                                <input id="themeRevealBlur" type="range" min="0" max="40">
+                            </label>
+                        </div>
+
+                        <div class="toggle-grid">
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>Username sparkles</strong>
+                                    <span>Декоративный флаг для кастомной темы.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="themeUsernameSparkles" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+
+                            <label class="toggle-card">
+                                <div class="toggle-copy">
+                                    <strong>Cursor trail</strong>
+                                    <span>Оставить интерактивное свечение от курсора.</span>
+                                </div>
+                                <span class="switch">
+                                    <input id="themeCursorTrail" type="checkbox">
+                                    <span></span>
+                                </span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <section id="settings-panel-extras" class="panel settings-panel" data-settings-tab-panel="extras" role="tabpanel" aria-labelledby="settings-tab-extras">
+                        <div class="section-head">
+                            <div>
+                                <p class="eyebrow">extras</p>
+                                <h2>Ссылки, теги, бейджи и трек</h2>
+                            </div>
+                        </div>
+
+                        <div class="field-grid">
+                            <label class="field">
+                                <span class="field__label">Website</span>
+                                <input id="extraWebsite" type="url">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Discord</span>
+                                <input id="extraDiscord" type="text">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Track title</span>
+                                <input id="extraTrackTitle" type="text" placeholder="Автоматически из Track URL" readonly>
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Track artist</span>
+                                <input id="extraTrackArtist" type="text" placeholder="Автоматически из Track URL" readonly>
+                            </label>
+                            <label class="field field--full">
+                                <span class="field__label">Track URL</span>
+                                <input id="extraTrackUrl" type="text" placeholder="https://youtu.be/...">
+                                <span class="field__hint">Для YouTube название и автор подтягиваются автоматически.</span>
+                            </label>
+                            <label class="field field--full">
+                                <span class="field__label">Links</span>
+                                <textarea id="extraLinks" placeholder="GitHub | https://github.com/ILA-dd"></textarea>
+                                <span class="field__hint">Каждая строка в формате `label | url`.</span>
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Tags</span>
+                                <input id="extraTags" type="text" placeholder="math, bio, frontend">
+                            </label>
+                            <label class="field">
+                                <span class="field__label">Badges</span>
+                                <input id="extraBadges" type="text" placeholder="owner, verified">
+                            </label>
+                        </div>
+                    </section>
+
+                    <section id="settings-panel-preview" class="panel settings-panel" data-settings-tab-panel="preview" role="tabpanel" aria-labelledby="settings-tab-preview">
+                        <div class="section-head">
+                            <div>
+                                <p class="eyebrow">preview</p>
+                                <h2>Live preview</h2>
+                            </div>
+                        </div>
+
+                        <div id="previewMount" class="preview-shell"></div>
+                    </section>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

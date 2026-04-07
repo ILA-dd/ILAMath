@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILAMath Profiles / profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Mono:wght@400;700&family=Syne:wght@500;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../styles.css">
+    <script defer src="../script.js"></script>
+</head>
+<body data-page="profile" data-root="../">
+    <div class="ambient ambient--left" aria-hidden="true"></div>
+    <div class="ambient ambient--right" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <a class="brand" href="../">ILAMath Profiles</a>
+            <nav class="site-nav" aria-label="Навигация">
+                <a href="../main/">main</a>
+                <a href="../settings/">settings</a>
+                <a href="./?u=ila">profile</a>
+            </nav>
+            <div class="header-state" id="headerSessionState">guest mode</div>
+        </header>
+
+        <main class="stack-xl">
+            <div id="profileMessage" class="message message--info hidden">Открываю публичную страницу профиля.</div>
+            <div id="profileMount"></div>
+        </main>
+    </div>
+</body>
+</html>

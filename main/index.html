@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILAMath Profiles / main</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Mono:wght@400;700&family=Syne:wght@500;700;800&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="../styles.css">
+    <script defer src="../script.js"></script>
+</head>
+<body data-page="main" data-root="../">
+    <div class="ambient ambient--left" aria-hidden="true"></div>
+    <div class="ambient ambient--right" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <div class="site-shell">
+        <header class="site-header site-header--main">
+            <a class="brand" href="../">ILAMath Profiles</a>
+            <nav class="site-nav" aria-label="Навигация">
+                <a href="./">main</a>
+                <a href="../settings/">settings</a>
+                <a href="../profile/?u=ila">demo profile</a>
+            </nav>
+            <div class="site-header__right">
+                <div class="header-state" id="headerSessionState">guest mode</div>
+                <div id="mainHeaderAuth" class="main-header-auth"></div>
+            </div>
+        </header>
+
+        <section id="authPanel" class="panel main-auth-panel hidden" aria-live="polite">
+            <div class="main-auth-panel__head">
+                <div>
+                    <p class="eyebrow" id="authPanelEyebrow">register</p>
+                    <h2 id="authPanelTitle">Создать аккаунт</h2>
+                </div>
+                <button id="authPanelClose" class="main-auth-panel__close" type="button" aria-label="Close auth panel">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <div class="main-auth-tabs" role="tablist" aria-label="Auth mode">
+                <button class="main-auth-tab is-active" type="button" data-auth-mode="register" aria-selected="true">Register</button>
+                <button class="main-auth-tab" type="button" data-auth-mode="login" aria-selected="false">Login</button>
+            </div>
+
+            <form id="registerForm" class="form-stack main-auth-form">
+                <label class="field">
+                    <span class="field__label">Username</span>
+                    <input name="register_username" type="text" placeholder="ila" maxlength="25" required>
+                </label>
+                <label class="field">
+                    <span class="field__label">Display name</span>
+                    <input name="register_display_name" type="text" placeholder="ILA" maxlength="25">
+                </label>
+                <label class="field">
+                    <span class="field__label">Password</span>
+                    <input name="register_password" type="password" placeholder="Минимум 4 символа" required>
+                </label>
+                <button class="button button--primary" type="submit">Create account</button>
+            </form>
+
+            <form id="loginForm" class="form-stack main-auth-form hidden">
+                <label class="field">
+                    <span class="field__label">Username</span>
+                    <input name="login_username" type="text" placeholder="ila" maxlength="25" required>
+                </label>
+                <label class="field">
+                    <span class="field__label">Password</span>
+                    <input name="login_password" type="password" placeholder="alesha7720" required>
+                </label>
+                <button class="button button--primary" type="submit">Sign in</button>
+            </form>
+
+            <p id="authPanelNote" class="footer-note">Создай новый аккаунт или войди в уже существующий. Для теста доступен `ila` с паролем `alesha7720`.</p>
+        </section>
+
+        <main class="main-layout">
+            <section class="panel main-layout__hero">
+                <div class="main-hero-grid">
+                    <div class="stack-lg">
+                        <div>
+                            <p class="eyebrow">main</p>
+                            <h1 class="hero-title">Здесь люди регаются, входят и открывают профили друг друга.</h1>
+                        </div>
+                        <p class="hero-copy">
+                            Ниже уже есть рабочий поток: создать аккаунт, попасть в `/settings`, собрать свою
+                            страницу и потом открыть ее как публичный профиль по username.
+                        </p>
+                        <div class="chip-row">
+                            <span class="chip">profiles <strong id="mainProfileCount">0</strong></span>
+                            <span class="chip">storage local</span>
+                            <span class="chip">fakecrime-inspired</span>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="section-head">
+                            <div>
+                                <p class="eyebrow">how to use</p>
+                                <h2>Поток для пользователя</h2>
+                            </div>
+                        </div>
+                        <div class="feature-grid">
+                            <article class="feature-card">
+                                <strong>1. Register</strong>
+                                <p>Создай username и пароль прямо на этой странице.</p>
+                            </article>
+                            <article class="feature-card">
+                                <strong>2. Customize</strong>
+                                <p>Перейди в `settings` и настрой внешний вид и контент.</p>
+                            </article>
+                            <article class="feature-card">
+                                <strong>3. Share</strong>
+                                <p>Открой `/profile/?u=username` и раздай ссылку другим.</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sessionPanel" class="panel session-banner hidden"></section>
+
+            <div id="mainMessage" class="message message--info">Используй Register или Login справа сверху, чтобы войти в аккаунт.</div>
+
+            <section class="panel settings-panel">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow">community</p>
+                        <h2>Публичные профили</h2>
+                    </div>
+                    <a class="button button--ghost" href="../settings/">Go to settings</a>
+                </div>
+                <div id="communityGrid" class="community-grid"></div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
