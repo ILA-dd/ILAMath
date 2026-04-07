@@ -2061,6 +2061,7 @@ function initMainPage() {
     const communityGrid = document.getElementById("communityGrid");
     const mainProfileCount = document.getElementById("mainProfileCount");
     const mainHeaderAuth = document.getElementById("mainHeaderAuth");
+    const headerSessionState = document.getElementById("headerSessionState");
     const authPanel = document.getElementById("authPanel");
     const authPanelTitle = document.getElementById("authPanelTitle");
     const authPanelEyebrow = document.getElementById("authPanelEyebrow");
@@ -2200,6 +2201,14 @@ function initMainPage() {
     renderSessionPanel();
     renderHeaderAuth();
     setAuthMode("register");
+
+    headerSessionState?.addEventListener("click", () => {
+        if (current) {
+            return;
+        }
+
+        openAuthPanel("register");
+    });
 
     authModeButtons.forEach((button) => {
         button.addEventListener("click", () => {

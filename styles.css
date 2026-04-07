@@ -136,15 +136,30 @@ img {
 
 .site-nav a,
 .header-state {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 0.7rem 0.95rem;
     border-radius: 999px;
     border: 1px solid var(--surface-border);
     background: rgba(255, 255, 255, 0.03);
     text-decoration: none;
     color: var(--muted);
+    font: inherit;
 }
 
 .site-nav a:hover {
+    border-color: rgba(255, 143, 64, 0.24);
+    color: var(--text);
+}
+
+.header-state--action {
+    cursor: pointer;
+}
+
+.header-state--action:hover,
+.header-state--action:focus-visible {
     border-color: rgba(255, 143, 64, 0.24);
     color: var(--text);
 }
