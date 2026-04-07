@@ -2202,7 +2202,9 @@ function initMainPage() {
     renderHeaderAuth();
     setAuthMode("register");
 
-    headerSessionState?.addEventListener("click", () => {
+    headerSessionState?.addEventListener("click", (event) => {
+        event.stopPropagation();
+
         if (current) {
             return;
         }
@@ -2231,7 +2233,8 @@ function initMainPage() {
             !authPanel ||
             authPanel.classList.contains("hidden") ||
             authPanel.contains(event.target) ||
-            mainHeaderAuth?.contains(event.target)
+            mainHeaderAuth?.contains(event.target) ||
+            headerSessionState?.contains(event.target)
         ) {
             return;
         }
